@@ -69,6 +69,7 @@ export default function App() {
   const [healthError, setHealthError] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [options, setOptions] = useState<ChatOptions>({});
+  const [scoreAnswers, setScoreAnswers] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   // Bumped after each turn so the context/corpus panels pick up fresh numbers
   // without polling while you are not looking at them.
@@ -160,6 +161,8 @@ export default function App() {
         {tab === 'chat' && (
           <ChatView
             options={options}
+            scoreAnswers={scoreAnswers}
+            setScoreAnswers={setScoreAnswers}
             conversationId={conversationId}
             setConversationId={setConversationId}
             onTurnComplete={bumpRefresh}

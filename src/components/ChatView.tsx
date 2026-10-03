@@ -9,6 +9,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ApiError, NetworkError, api } from '../api/client';
 import type { AnswerKind, ChatOptions, ChatResponse } from '../api/types';
+import { AnswerScoresPanel } from './AnswerScores';
 import { AnswerText } from './AnswerText';
 import { DiagnosticsPanel, GuardrailEvents } from './Diagnostics';
 import { SourceList } from './SourceList';
@@ -39,11 +40,15 @@ const EXAMPLES = [
 
 export function ChatView({
   options,
+  scoreAnswers,
+  setScoreAnswers,
   conversationId,
   setConversationId,
   onTurnComplete,
 }: {
   options: ChatOptions;
+  scoreAnswers: boolean;
+  setScoreAnswers: (v: boolean) => void;
   conversationId: string | null;
   setConversationId: (id: string | null) => void;
   onTurnComplete: () => void;
@@ -70,7 +75,7 @@ export function ChatView({
     setSelected(id);
 
     try {
-      const response = await api.chat(text, conversationId, options);
+      const response = await api.chat(text, conversationId, options, scoreAnswers);
       setConversationId(response.conversation_id);
       setTurns((t) => t.map((turn) => (turn.id === id ? { ...turn, response, pending: false } : turn)));
     } catch (e) {
@@ -146,7 +151,10 @@ export function ChatView({
                 >
                   {turn.pending && (
                     <div className="bubble row muted">
-                      <span className="spin" /> thinking… (retrieval, grading and generation)
+                      <span className="spin" />{' '}
+                      {scoreAnswers
+                        ? 'thinking… then scoring with RAGAS (adds ~15-20s)'
+                        : 'thinking… (retrieval, grading and generation)'}
                     </div>
                   )}
 
@@ -177,6 +185,22 @@ export function ChatView({
                           <span className="badge warn">
                             {turn.response.guardrail_events.length} guardrail event
                             {turn.response.guardrail_events.length > 1 ? 's' : ''}
+                          </span>
+                        )}
+                        {turn.response.scores?.faithfulness != null && (
+                          <span
+                            className={`badge ${turn.response.scores.faithfulness >= 0.8 ? 'ok' : turn.response.scores.faithfulness >= 0.5 ? 'warn' : 'danger'}`}
+                            title="RAGAS faithfulness: is every claim supported by the retrieved context?"
+                          >
+                            faithfulness {turn.response.scores.faithfulness.toFixed(2)}
+                          </span>
+                        )}
+                        {turn.response.scores?.answer_relevancy != null && (
+                          <span
+                            className={`badge ${turn.response.scores.answer_relevancy >= 0.8 ? 'ok' : turn.response.scores.answer_relevancy >= 0.5 ? 'warn' : 'danger'}`}
+                            title="RAGAS answer relevancy: does it address the question asked?"
+                          >
+                            relevancy {turn.response.scores.answer_relevancy.toFixed(2)}
                           </span>
                         )}
                       </div>
@@ -223,6 +247,23 @@ export function ChatView({
             New
           </button>
         </div>
+        <div
+          className="row small muted"
+          style={{ padding: '0 16px 10px', gap: 7, borderTop: 'none' }}
+        >
+          <label className="row" style={{ gap: 6, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={scoreAnswers}
+              onChange={(e) => setScoreAnswers(e.target.checked)}
+              style={{ width: 'auto', margin: 0 }}
+            />
+            Score answers with RAGAS
+          </label>
+          <span className="tiny faint">
+            ~15-20s extra per turn; only grounded answers are scored
+          </span>
+        </div>
       </div>
 
       <div className="pane">
@@ -234,6 +275,7 @@ export function ChatView({
               <h3>Guardrail events</h3>
               <GuardrailEvents events={current.response.guardrail_events} />
             </div>
+            {current.response.scores && <AnswerScoresPanel scores={current.response.scores} />}
             {current.response.diagnostics && <DiagnosticsPanel d={current.response.diagnostics} />}
             <SourceList sources={current.response.sources} activeLabel={activeLabel} onHover={setActiveLabel} />
           </>

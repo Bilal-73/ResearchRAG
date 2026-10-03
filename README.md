@@ -52,6 +52,15 @@ matched to a server log line.
 **Chat** — the conversation, with an inspector on the right for the selected turn. `[S1]` markers in
 an answer are clickable and scroll to the matching source.
 
+The **Score answers with RAGAS** checkbox under the composer turns on live per-answer scoring: the
+API runs RAGAS over the answer it just produced and returns `faithfulness` and `answer_relevancy`,
+shown as badges on the message and as a panel in the inspector. Off by default — measured at
+**~15-20s of extra latency per turn**, which roughly doubles the wait. Only *grounded* answers are
+scored; chit-chat, refusals and blocked turns have no retrieved context to score against and say so
+instead of showing a number.
+
+A `—` in that panel means the metric could not be computed, **not** that it scored zero.
+
 A key detail: **refusals, out-of-scope redirects and safety blocks are not errors.** The API returns
 200 for them because the request was valid and the system behaved correctly, so they render as normal
 messages with a badge (`out of scope`, `not in corpus`, `blocked`, `safety response`). Only genuine

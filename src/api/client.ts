@@ -93,13 +93,14 @@ export const api = {
 
   health: () => request<HealthResponse>('/health'),
 
-  chat: (message: string, conversationId: string | null, options?: ChatOptions) =>
+  chat: (message: string, conversationId: string | null, options?: ChatOptions, score = false) =>
     request<ChatResponse>('/v1/chat', {
       method: 'POST',
       body: JSON.stringify({
         message,
         conversation_id: conversationId,
         options: options && Object.keys(options).length ? options : undefined,
+        score,
       }),
     }),
 

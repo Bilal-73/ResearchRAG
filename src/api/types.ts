@@ -80,6 +80,17 @@ export interface Diagnostics {
   total_seconds: number;
 }
 
+/** RAGAS scores for a single live answer, when a request opts in with `score: true`.
+ *  Only reference-free metrics: context_precision/recall need a gold answer, which
+ *  does not exist for a real user's question. `null` means "could not be computed",
+ *  NOT zero. */
+export interface AnswerScores {
+  faithfulness: number | null;
+  answer_relevancy: number | null;
+  seconds: number;
+  error: string | null;
+}
+
 export interface ChatResponse {
   answer: string;
   answer_kind: AnswerKind;
@@ -89,6 +100,7 @@ export interface ChatResponse {
   block_kind: BlockKind;
   guardrail_events: GuardrailEvent[];
   diagnostics: Diagnostics | null;
+  scores: AnswerScores | null;
 }
 
 export interface ChatOptions {
