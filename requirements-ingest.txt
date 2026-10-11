@@ -1,0 +1,9 @@
+# ── Ingestion ──
+# The Open RAG Benchmark corpus ships pre-parsed JSON, so the default ingestion path
+# needs NOTHING beyond requirements.txt — no Docling, no PDF parsing.
+#
+# Install this only if you want VLM figure captioning (CAPTION_FIGURES=true); the
+# captioner talks to any OpenAI-compatible vision endpoint, so this is just progress
+# reporting for long runs.
+-r requirements.txt
+tqdm>=4.66

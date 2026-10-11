@@ -1,0 +1,985 @@
+{
+  "run_at": "2026-10-03T09:58:45",
+  "config": {
+    "n_queries": 24,
+    "seed": 20261003,
+    "sources": null,
+    "types": null,
+    "top_k": 20,
+    "rerank": true,
+    "rerank_top_k": 5,
+    "enable_query_rewrite": true,
+    "enable_hyde": true,
+    "enable_planner": true,
+    "enable_context_grading": true,
+    "chunk_max_tokens": 400,
+    "caption_figures": false
+  },
+  "eval_set": {
+    "n_selected": 24,
+    "n_total_queries": 3045,
+    "n_indexed_papers": 3,
+    "n_dropped_unindexed": 3021,
+    "by_type": {
+      "abstractive": 19,
+      "extractive": 5
+    },
+    "by_source": {
+      "text": 12,
+      "text-image": 6,
+      "text-table-image": 6
+    }
+  },
+  "retrieval": {
+    "top_k": 20,
+    "n_questions": 24,
+    "overall": {
+      "recall@k_doc": 1.0,
+      "mrr_doc": 1.0,
+      "ndcg@k_doc": 1.0,
+      "recall@k_section": 0.875,
+      "mrr_section": 0.8021,
+      "ndcg@k_section": 0.8205,
+      "n": 24
+    },
+    "by_type": {
+      "abstractive": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.8421,
+        "mrr_section": 0.7763,
+        "ndcg@k_section": 0.7927,
+        "n": 19
+      },
+      "extractive": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 1.0,
+        "mrr_section": 0.9,
+        "ndcg@k_section": 0.9262,
+        "n": 5
+      }
+    },
+    "by_source": {
+      "text": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.9167,
+        "mrr_section": 0.875,
+        "ndcg@k_section": 0.8859,
+        "n": 12
+      },
+      "text-image": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.6667,
+        "mrr_section": 0.4583,
+        "ndcg@k_section": 0.5103,
+        "n": 6
+      },
+      "text-table-image": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 1.0,
+        "mrr_section": 1.0,
+        "ndcg@k_section": 1.0,
+        "n": 6
+      }
+    }
+  },
+  "retrieval_details": [
+    {
+      "query_id": "0920cb6c-229b-4b46-b2ab-834dffea6689",
+      "question": "How do implementation shortfall (IS) and target close (TC) orders differ in trading strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 2,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "1268987a-01f4-40a3-95ed-1a7f8e554cff",
+      "question": "How do SPX smiles vary with different maturities in financial modeling?",
+      "doc_id": "2401.03345v2",
+      "section_id": 21,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 4,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "449cf8f0-d013-41b3-82a1-5039c03fd181",
+      "question": "Why is it important to analyze short and long maturities in financial modeling?",
+      "doc_id": "2401.03345v2",
+      "section_id": 24,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 26,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 26,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 26,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "5de01203-79c7-46b6-8e72-f449b1d5f842",
+      "question": "What is a reference strategy in order execution brokerage?",
+      "doc_id": "2401.03305v2",
+      "section_id": 4,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "680bb2b4-063a-4fb0-9088-ea6cf09c9d67",
+      "question": "Why might observed roughness not reflect the true nature of spot volatility processes?",
+      "doc_id": "2401.03345v2",
+      "section_id": 19,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "685a5f8a-7cd9-41fc-b461-f3888a08bc99",
+      "question": "What does a lower estimated Hurst index indicate about realized volatilities compared to theoretical spot volatilities?",
+      "doc_id": "2401.03345v2",
+      "section_id": 19,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "782b73e6-acc4-43ed-a6ae-97a9f4039769",
+      "question": "What challenges do large position holders face when executing trades in financial markets?",
+      "doc_id": "2401.03305v2",
+      "section_id": 2,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "78451955-6ec1-4549-9322-df140b3e2d7a",
+      "question": "What role does parameter $\\kappa$ play in shaping trading trajectories for IS and TC strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 9,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 8,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 8,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "7a7c05a5-1c72-4ac3-8db0-d8d874236c99",
+      "question": "How does the new pipeline improve cell type identification in spatial transcriptomics?",
+      "doc_id": "2401.02564v2",
+      "section_id": 10,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "81db723a-a4a1-4f10-81fa-a964562ec5bc",
+      "question": "Is there overshooting in the optimal strategy if \\( R < A - (x_0 - A)/(\\cosh(\\kappa T) -1)\\)?",
+      "doc_id": "2401.03305v2",
+      "section_id": 23,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 23,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 23,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 23,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "881ec87c-d100-46de-82a7-dd02a7a91d5d",
+      "question": "Why is stress testing important for financial strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 14,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "935fb7f6-48ce-44b6-942d-1bff82ff5f03",
+      "question": "How do researchers study gene expression patterns during embryogenesis?",
+      "doc_id": "2401.02564v2",
+      "section_id": 1,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "953986dc-76d7-4c5c-9206-55506afa9d0e",
+      "question": "What impact do transaction costs have on aligning optimal trading strategies with reference strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 13,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "ad334481-99da-4506-9e22-3153e4ad3aa8",
+      "question": "How do different volatility models compare over time when analyzing parameter $\\rho$?",
+      "doc_id": "2401.03345v2",
+      "section_id": 23,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 24,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 23,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 26,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 25,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 23,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "ad960937-03d6-422c-ac73-1b2401c022aa",
+      "question": "Does the feature extraction process precede dataset preparation for training?",
+      "doc_id": "2401.02564v2",
+      "section_id": 5,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 5,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "b451cab4-11f9-415a-9cb5-750491e99a55",
+      "question": "How is live imaging used to analyze transcriptional dynamics?",
+      "doc_id": "2401.02564v2",
+      "section_id": 1,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "bb4224f6-e1f8-4e76-ac38-e1c168a64671",
+      "question": "What role do trading trajectories play in optimal order execution strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 15,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "c1c73461-7f9e-4ee0-86d8-d54f6d5d7d74",
+      "question": "What are the different types of Bergomi models used for volatility calibration?",
+      "doc_id": "2401.03345v2",
+      "section_id": 21,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 25,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 24,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 26,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 16,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "c9820ad3-4368-41a0-9d67-cd0e1abde636",
+      "question": "What is the purpose of using XGBoost in predicting cell distribution during Drosophila embryogenesis?",
+      "doc_id": "2401.02564v2",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "cd4729c4-e3dc-4907-bf43-b5a7b68d432d",
+      "question": "How does grid size impact the performance of models used in super-resolution live movie analysis?",
+      "doc_id": "2401.02564v2",
+      "section_id": 7,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 6,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "d30639b4-d312-47b4-a347-c98a640930ad",
+      "question": "Is the Riemann-Liouville fractional Brownian motion used in rough volatility models Markovian?",
+      "doc_id": "2401.03345v2",
+      "section_id": 2,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 8,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 5,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "f008fe1b-a418-40cc-b41f-3b09fc9e8e9f",
+      "question": "Were the animal experiments approved by an ethics review board?",
+      "doc_id": "2401.02564v2",
+      "section_id": 11,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 11,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.02564v2",
+          "section_id": 8,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "f2837037-7e26-4572-a43c-49bdd84b4793",
+      "question": "How does the optimal investment strategy compare to the TWAP strategy in terms of risk and return?",
+      "doc_id": "2401.03305v2",
+      "section_id": 14,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 14,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "fd97f39d-243e-4075-b04b-2f2f459db403",
+      "question": "What are the key differences between implementation shortfall and target close trading strategies?",
+      "doc_id": "2401.03305v2",
+      "section_id": 9,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    }
+  ]
+}

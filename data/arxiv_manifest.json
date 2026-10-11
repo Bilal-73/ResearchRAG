@@ -1,0 +1,790 @@
+{
+  "2401.02564v2": {
+    "title": "Predicting Future States with Spatial Point Processes in Single Molecule Resolution Spatial Transcriptomics",
+    "authors": [
+      "Biraaj Rout",
+      "Priyanshi Borad",
+      "Parisa Boodaghi Malidarreh",
+      "Mohammad Sadegh Nasr",
+      "Jillur Rahman Saurav",
+      "Kelli Fenelon",
+      "Jai Prakash Veerla",
+      "Jacob M. Luber",
+      "Theodora Koromila"
+    ],
+    "categories": [
+      "q-bio.TO",
+      "cs.CV"
+    ],
+    "published": "2024-01-04T22:37:56Z",
+    "updated": "2025-02-05T17:29:46Z",
+    "n_chunks": 32
+  },
+  "2401.03305v2": {
+    "title": "Leveraging IS and TC: Optimal order execution subject to reference strategies",
+    "authors": [
+      "Xue Cheng",
+      "Peng Guo",
+      "Tai-ho Wang"
+    ],
+    "categories": [
+      "q-fin.TR"
+    ],
+    "published": "2024-01-06T21:02:17Z",
+    "updated": "2025-03-04T14:39:51Z",
+    "n_chunks": 138
+  },
+  "2401.03345v2": {
+    "title": "Volatility models in practice: Rough, Path-dependent or Markovian?",
+    "authors": [
+      "Eduardo Abi Jaber",
+      " Shaun",
+      " Li"
+    ],
+    "categories": [
+      "q-fin.MF",
+      "q-fin.CP",
+      "q-fin.PR"
+    ],
+    "published": "2024-01-07T00:35:50Z",
+    "updated": "2025-04-09T08:26:15Z",
+    "n_chunks": 102
+  },
+  "2401.03776v8": {
+    "title": "Short-Term Asymptotics of Volatility Skew and Curvature Based on Cumulants",
+    "authors": [
+      "Liexin Cheng",
+      "Xue Cheng"
+    ],
+    "categories": [
+      "q-fin.PR",
+      "q-fin.MF"
+    ],
+    "published": "2024-01-08T09:59:26Z",
+    "updated": "2025-03-07T14:16:25Z",
+    "n_chunks": 79
+  },
+  "2401.05657v5": {
+    "title": "An impossibility theorem concerning positive involvement in voting",
+    "authors": [
+      "Wesley H. Holliday"
+    ],
+    "categories": [
+      "econ.TH",
+      "cs.GT",
+      "cs.MA"
+    ],
+    "published": "2024-01-11T04:40:02Z",
+    "updated": "2025-03-29T20:17:16Z",
+    "n_chunks": 39
+  },
+  "2401.06326v4": {
+    "title": "Optimal linear prediction with functional observations: Why you can use a simple post-dimension reduction estimator",
+    "authors": [
+      "Won-Ki Seo"
+    ],
+    "categories": [
+      "math.ST",
+      "stat.TH"
+    ],
+    "published": "2024-01-12T02:34:32Z",
+    "updated": "2025-03-04T01:55:31Z",
+    "n_chunks": 108
+  },
+  "2401.06740v2": {
+    "title": "A deep implicit-explicit minimizing movement method for option pricing in jump-diffusion models",
+    "authors": [
+      "Emmanuil H. Georgoulis",
+      "Antonis Papapantoleon",
+      "Costas Smaragdakis"
+    ],
+    "categories": [
+      "q-fin.CP",
+      "cs.LG",
+      "cs.NA",
+      "math.NA",
+      "math.PR",
+      "stat.ML"
+    ],
+    "published": "2024-01-12T18:21:01Z",
+    "updated": "2025-03-28T18:25:23Z",
+    "n_chunks": 63
+  },
+  "2401.06959v2": {
+    "title": "Quantifying energy landscape of high-dimensional oscillatory systems by diffusion decomposition",
+    "authors": [
+      "Shirui Bian",
+      "Ruisong Zhou",
+      "Wei Lin",
+      "Chunhe Li"
+    ],
+    "categories": [
+      "q-bio.QM",
+      "q-bio.MN"
+    ],
+    "published": "2024-01-13T03:15:13Z",
+    "updated": "2025-01-31T10:38:07Z",
+    "n_chunks": 41
+  },
+  "2401.06987v2": {
+    "title": "Cramer-Rao bound and absolute sensitivity in chemical reaction networks",
+    "authors": [
+      "Dimitri Loutchko",
+      "Yuki Sughiyama",
+      "Tetsuya J. Kobayashi"
+    ],
+    "categories": [
+      "q-bio.MN",
+      "cs.IT",
+      "math.IT",
+      "physics.bio-ph",
+      "physics.chem-ph"
+    ],
+    "published": "2024-01-13T06:00:45Z",
+    "updated": "2025-03-24T08:32:27Z",
+    "n_chunks": 90
+  },
+  "2401.07294v4": {
+    "title": "Multilevel Metamodels: Enhancing Inference, Interpretability, and Generalizability in Monte Carlo Simulation Studies",
+    "authors": [
+      "Joshua Gilbert",
+      "Luke Miratrix"
+    ],
+    "categories": [
+      "stat.ME",
+      "math.ST",
+      "stat.TH"
+    ],
+    "published": "2024-01-14T14:05:33Z",
+    "updated": "2025-04-09T10:45:08Z",
+    "n_chunks": 70
+  },
+  "2401.07317v2": {
+    "title": "Remarks on some Limit Geometric Properties related to an Idempotent and Non-Associative Algebraic Structure",
+    "authors": [
+      "Walter Briec"
+    ],
+    "categories": [
+      "math.RA",
+      "math.CA"
+    ],
+    "published": "2024-01-14T15:45:04Z",
+    "updated": "2025-04-07T12:39:23Z",
+    "n_chunks": 201
+  },
+  "2401.11899v3": {
+    "title": "Unambiguous Efficiency of Random Allocations",
+    "authors": [
+      "Eun Jeong Heo",
+      "Vikram Manjunath",
+      "Samson Alva"
+    ],
+    "categories": [
+      "econ.TH"
+    ],
+    "published": "2024-01-22T12:49:44Z",
+    "updated": "2025-02-20T00:23:13Z",
+    "n_chunks": 164
+  },
+  "2401.12638v7": {
+    "title": "On The Axioms Of $\\mathcal{M},\\mathcal{N}$-Adhesive Categories",
+    "authors": [
+      "Davide Castelnovo",
+      "Marino Miculan"
+    ],
+    "categories": [
+      "cs.LO",
+      "math.CT"
+    ],
+    "published": "2024-01-23T10:45:56Z",
+    "updated": "2025-03-05T10:00:08Z",
+    "n_chunks": 100
+  },
+  "2401.14085v2": {
+    "title": "Enhanced Multi-Target Tracking in Dynamic Environments: Distributed Flooding Control in the Random Finite Set Framework",
+    "authors": [
+      "Aidan Blair",
+      "Amirali Khodadadian Gostar",
+      "Alireza Bab-Hadiashar",
+      "Xiaodong Li",
+      "Reza Hoseinnezhad"
+    ],
+    "categories": [
+      "cs.SY",
+      "eess.SP"
+    ],
+    "published": "2024-01-25T11:03:53Z",
+    "updated": "2025-03-04T05:17:51Z",
+    "n_chunks": 84
+  },
+  "2401.15478v2": {
+    "title": "Product Manifold Representations for Learning on Biological Pathways",
+    "authors": [
+      "Daniel McNeela",
+      "Frederic Sala",
+      "Anthony Gitter"
+    ],
+    "categories": [
+      "q-bio.QM",
+      "cs.LG",
+      "q-bio.MN"
+    ],
+    "published": "2024-01-27T18:46:19Z",
+    "updated": "2025-02-04T20:14:32Z",
+    "n_chunks": 68
+  },
+  "2401.16412v4": {
+    "title": "Learning to Manipulate under Limited Information",
+    "authors": [
+      "Wesley H. Holliday",
+      "Alexander Kristoffersen",
+      "Eric Pacuit"
+    ],
+    "categories": [
+      "cs.AI",
+      "cs.GT",
+      "cs.LG",
+      "cs.MA",
+      "econ.TH"
+    ],
+    "published": "2024-01-29T18:49:50Z",
+    "updated": "2025-02-22T21:33:28Z",
+    "n_chunks": 46
+  },
+  "2401.17469v2": {
+    "title": "Dicke superradiant enhancement of the heat current in circuit QED",
+    "authors": [
+      "Gian Marcello Andolina",
+      "Paolo Andrea Erdman",
+      "Frank Noé",
+      "Jukka Pekola",
+      "Marco Schirò"
+    ],
+    "categories": [
+      "quant-ph",
+      "cond-mat.mes-hall"
+    ],
+    "published": "2024-01-30T22:06:37Z",
+    "updated": "2025-03-05T18:47:49Z",
+    "n_chunks": 125
+  },
+  "2402.02272v2": {
+    "title": "One-inflated zero-truncated Poisson and negative binomial regression models",
+    "authors": [
+      "Ryan T. Godwin"
+    ],
+    "categories": [
+      "econ.EM"
+    ],
+    "published": "2024-02-03T21:51:09Z",
+    "updated": "2025-03-20T20:03:12Z",
+    "n_chunks": 61
+  },
+  "2402.03637v2": {
+    "title": "Towards the quantum exceptional series",
+    "authors": [
+      "Kim Morrison",
+      "Noah Snyder",
+      "Dylan P. Thurston"
+    ],
+    "categories": [
+      "math.QA",
+      "math.CT",
+      "math.GT",
+      "math.RT"
+    ],
+    "published": "2024-02-06T02:29:48Z",
+    "updated": "2025-04-08T17:58:31Z",
+    "n_chunks": 360
+  },
+  "2402.04429v3": {
+    "title": "Meritocracy and Its Discontents: Long-run Effects of Repeated School Admission Reforms",
+    "authors": [
+      "Chiaki Moriguchi",
+      "Yusuke Narita",
+      "Mari Tanaka"
+    ],
+    "categories": [
+      "econ.GN",
+      "q-fin.EC"
+    ],
+    "published": "2024-02-06T22:06:07Z",
+    "updated": "2025-04-01T01:27:20Z",
+    "n_chunks": 105
+  },
+  "2402.04840v3": {
+    "title": "Efficient Estimation of a Gaussian Mean with Local Differential Privacy",
+    "authors": [
+      "Nikita P. Kalinin",
+      "Lukas Steinberger"
+    ],
+    "categories": [
+      "math.ST",
+      "stat.TH"
+    ],
+    "published": "2024-02-07T13:41:45Z",
+    "updated": "2025-03-05T13:50:30Z",
+    "n_chunks": 117
+  },
+  "2402.07527v3": {
+    "title": "Operating conditions and thermodynamic bounds of dual radiative heat engines",
+    "authors": [
+      "Julien Legendre",
+      "Pierre-Olivier Chapuis"
+    ],
+    "categories": [
+      "physics.app-ph",
+      "physics.class-ph"
+    ],
+    "published": "2024-02-12T09:52:04Z",
+    "updated": "2025-04-08T07:13:24Z",
+    "n_chunks": 77
+  },
+  "2402.09444v3": {
+    "title": "Multimodal Action Quality Assessment",
+    "authors": [
+      "Ling-An Zeng",
+      "Wei-Shi Zheng"
+    ],
+    "categories": [
+      "eess.SP",
+      "cs.AI",
+      "cs.CV"
+    ],
+    "published": "2024-01-31T15:37:12Z",
+    "updated": "2025-03-05T14:02:10Z",
+    "n_chunks": 76
+  },
+  "2402.09721v6": {
+    "title": "Generalized Principal-Agent Problem with a Learning Agent",
+    "authors": [
+      "Tao Lin",
+      "Yiling Chen"
+    ],
+    "categories": [
+      "cs.GT",
+      "cs.AI",
+      "cs.LG",
+      "econ.TH"
+    ],
+    "published": "2024-02-15T05:30:47Z",
+    "updated": "2025-02-22T06:58:43Z",
+    "n_chunks": 185
+  },
+  "2402.12350v3": {
+    "title": "Rational powers, invariant ideals, and the summation formula",
+    "authors": [
+      "Sankhaneel Bisui",
+      "Sudipta Das",
+      "Tài Huy Hà",
+      "Jonathan Montaño"
+    ],
+    "categories": [
+      "math.AC"
+    ],
+    "published": "2024-02-19T18:28:02Z",
+    "updated": "2025-04-06T20:02:39Z",
+    "n_chunks": 167
+  },
+  "2402.13385v2": {
+    "title": "Regular Languages in the Sliding Window Model",
+    "authors": [
+      "Moses Ganardi",
+      "Danny Hucke",
+      "Markus Lohrey",
+      "Konstantinos Mamouras",
+      "Tatiana Starikovskaya"
+    ],
+    "categories": [
+      "cs.FL"
+    ],
+    "published": "2024-02-20T21:29:53Z",
+    "updated": "2025-03-05T09:23:17Z",
+    "n_chunks": 363
+  },
+  "2402.15828v4": {
+    "title": "Pricing of geometric Asian options in the Volterra-Heston model",
+    "authors": [
+      "Florian Aichinger",
+      "Sascha Desmettre"
+    ],
+    "categories": [
+      "q-fin.PR",
+      "math.PR"
+    ],
+    "published": "2024-02-24T14:41:56Z",
+    "updated": "2025-01-13T12:53:57Z",
+    "n_chunks": 86
+  },
+  "2403.00422v2": {
+    "title": "Inference for Interval-Identified Parameters Selected from an Estimated Set",
+    "authors": [
+      "Sukjin Han",
+      "Adam McCloskey"
+    ],
+    "categories": [
+      "econ.EM"
+    ],
+    "published": "2024-03-01T10:17:08Z",
+    "updated": "2025-04-07T20:26:16Z",
+    "n_chunks": 221
+  },
+  "2403.01012v4": {
+    "title": "Hilbert Space-Valued LQ Mean Field Games: An Infinite-Dimensional Analysis",
+    "authors": [
+      "Hanchao Liu",
+      "Dena Firoozi"
+    ],
+    "categories": [
+      "math.OC",
+      "math.FA",
+      "math.PR",
+      "q-fin.MF",
+      "q-fin.RM"
+    ],
+    "published": "2024-03-01T22:21:43Z",
+    "updated": "2025-03-24T20:27:49Z",
+    "n_chunks": 142
+  },
+  "2403.01421v2": {
+    "title": "Predicting the Unpredictable under Subjective Expected Utility",
+    "authors": [
+      "Burkhard C. Schipper"
+    ],
+    "categories": [
+      "econ.TH",
+      "math.PR"
+    ],
+    "published": "2024-03-03T07:41:44Z",
+    "updated": "2025-02-19T22:08:33Z",
+    "n_chunks": 124
+  },
+  "2403.03363v6": {
+    "title": "On minimizing cyclists' ascent times",
+    "authors": [
+      "Len Bos",
+      "Michael A. Slawinski",
+      "Raphaël A. Slawinski",
+      "Theodore Stanoev"
+    ],
+    "categories": [
+      "physics.class-ph",
+      "physics.pop-ph"
+    ],
+    "published": "2024-03-05T23:16:42Z",
+    "updated": "2025-03-11T14:36:57Z",
+    "n_chunks": 74
+  },
+  "2403.03367v4": {
+    "title": "am-AMM: An Auction-Managed Automated Market Maker",
+    "authors": [
+      "Austin Adams",
+      "Ciamac C. Moallemi",
+      "Sara Reynolds",
+      "Dan Robinson"
+    ],
+    "categories": [
+      "q-fin.TR",
+      "cs.GT",
+      "math.OC",
+      "q-fin.MF"
+    ],
+    "published": "2024-03-05T23:28:50Z",
+    "updated": "2025-02-12T17:16:51Z",
+    "n_chunks": 49
+  },
+  "2403.04433v3": {
+    "title": "The best autoregressive approach to audio inpainting is gap-wise Janssen",
+    "authors": [
+      "Ondřej Mokrý",
+      "Pavel Rajmic"
+    ],
+    "categories": [
+      "eess.AS",
+      "cs.SD"
+    ],
+    "published": "2024-03-07T12:06:19Z",
+    "updated": "2025-03-03T10:42:26Z",
+    "n_chunks": 23
+  },
+  "2403.04635v2": {
+    "title": "Virtuoso: Enabling Fast and Accurate Virtual Memory Research via an Imitation-based Operating System Simulation Methodology",
+    "authors": [
+      "Konstantinos Kanellopoulos",
+      "Konstantinos Sgouras",
+      "F. Nisa Bostanci",
+      "Andreas Kosmas Kakolyris",
+      "Berkin Kerim Konar",
+      "Rahul Bera",
+      "Mohammad Sadrosadati",
+      "Rakesh Kumar",
+      "Nandita Vijaykumar",
+      "Onur Mutlu"
+    ],
+    "categories": [
+      "cs.AR",
+      "cs.OS"
+    ],
+    "published": "2024-03-07T16:21:02Z",
+    "updated": "2025-03-27T01:00:37Z",
+    "n_chunks": 98
+  },
+  "2403.04768v3": {
+    "title": "On the sum of reciprocals of primes",
+    "authors": [
+      "Young Deuk Kim"
+    ],
+    "categories": [
+      "math.GM"
+    ],
+    "published": "2024-01-06T07:47:12Z",
+    "updated": "2025-02-28T12:06:17Z",
+    "n_chunks": 12
+  },
+  "2403.05373v2": {
+    "title": "Regularized Principal Spline Functions to Mitigate Spatial Confounding",
+    "authors": [
+      "Carlo Zaccardi",
+      "Pasquale Valentini",
+      "Luigi Ippoliti",
+      "Alexandra M. Schmidt"
+    ],
+    "categories": [
+      "stat.ME"
+    ],
+    "published": "2024-03-08T15:06:45Z",
+    "updated": "2025-03-04T13:52:40Z",
+    "n_chunks": 131
+  },
+  "2403.05412v2": {
+    "title": "On classical solutions and canonical transformations for Hamilton--Jacobi--Bellman equations",
+    "authors": [
+      "Mohit Bansil",
+      "Alpár R. Mészáros"
+    ],
+    "categories": [
+      "math.OC",
+      "math.AP"
+    ],
+    "published": "2024-03-08T16:11:03Z",
+    "updated": "2025-04-09T09:24:25Z",
+    "n_chunks": 45
+  },
+  "2403.05821v2": {
+    "title": "Optimizing LLM Queries in Relational Data Analytics Workloads",
+    "authors": [
+      "Shu Liu",
+      "Asim Biswal",
+      "Amog Kamsetty",
+      "Audrey Cheng",
+      "Luis Gaspar Schroeder",
+      "Liana Patel",
+      "Shiyi Cao",
+      "Xiangxi Mo",
+      "Ion Stoica",
+      "Joseph E. Gonzalez",
+      "Matei Zaharia"
+    ],
+    "categories": [
+      "cs.LG",
+      "cs.DB"
+    ],
+    "published": "2024-03-09T07:01:44Z",
+    "updated": "2025-04-09T10:23:39Z",
+    "n_chunks": 81
+  },
+  "2403.06613v3": {
+    "title": "Maxitive functions with respect to general orders",
+    "authors": [
+      "M. Kupper",
+      "J. M. Zapata"
+    ],
+    "categories": [
+      "math.ST",
+      "stat.TH"
+    ],
+    "published": "2024-03-11T11:01:31Z",
+    "updated": "2025-03-03T20:17:12Z",
+    "n_chunks": 160
+  },
+  "2403.08753v2": {
+    "title": "Invalid proxies and volatility changes",
+    "authors": [
+      "Giovanni Angelini",
+      "Luca Fanelli",
+      "Luca Neri"
+    ],
+    "categories": [
+      "econ.EM"
+    ],
+    "published": "2024-03-13T17:51:47Z",
+    "updated": "2025-02-27T14:07:23Z",
+    "n_chunks": 170
+  },
+  "2403.08977v2": {
+    "title": "On maximum-sum matchings of bichromatic points",
+    "authors": [
+      "Oscar Chacón-Rivera",
+      "Pablo Pérez-Lantero"
+    ],
+    "categories": [
+      "cs.CG",
+      "cs.DM"
+    ],
+    "published": "2024-03-13T21:56:40Z",
+    "updated": "2025-04-06T20:52:11Z",
+    "n_chunks": 42
+  },
+  "2403.11010v3": {
+    "title": "How Periodic Forecast Updates Influence MRP Planning Parameters: A Simulation Study",
+    "authors": [
+      "Wolfgang Seiringer",
+      "Klaus Altendorfer",
+      "Thomas Felberbauer",
+      "Balwin Bokor",
+      "Fabian Brockmann"
+    ],
+    "categories": [
+      "econ.GN",
+      "q-fin.EC"
+    ],
+    "published": "2024-03-16T20:18:43Z",
+    "updated": "2025-02-24T12:59:59Z",
+    "n_chunks": 86
+  },
+  "2403.11030v3": {
+    "title": "A-upper motives of reductive groups",
+    "authors": [
+      "Charles De Clercq",
+      "Nikita Karpenko",
+      "Anne Quéguiner-Mathieu"
+    ],
+    "categories": [
+      "math.AG"
+    ],
+    "published": "2024-03-16T22:27:52Z",
+    "updated": "2025-03-05T18:10:54Z",
+    "n_chunks": 146
+  },
+  "2403.12117v2": {
+    "title": "Transfer Learning for T-Cell Response Prediction",
+    "authors": [
+      "Josua Stadelmaier",
+      "Brandon Malone",
+      "Ralf Eggeling"
+    ],
+    "categories": [
+      "cs.LG"
+    ],
+    "published": "2024-03-18T17:32:19Z",
+    "updated": "2025-02-26T21:40:40Z",
+    "n_chunks": 54
+  },
+  "2403.13015v2": {
+    "title": "HyperVQ: MLR-based Vector Quantization in Hyperbolic Space",
+    "authors": [
+      "Nabarun Goswami",
+      "Yusuke Mukuta",
+      "Tatsuya Harada"
+    ],
+    "categories": [
+      "eess.IV",
+      "cs.LG"
+    ],
+    "published": "2024-03-18T03:17:08Z",
+    "updated": "2025-04-06T23:04:36Z",
+    "n_chunks": 61
+  },
+  "2403.18677v2": {
+    "title": "Blue repulsive potential for dysprosium Bose-Einstein condensates",
+    "authors": [
+      "Niccolò Preti",
+      "Nicolò Antolini",
+      "Giulio Biagioni",
+      "Andrea Fioretti",
+      "Giovanni Modugno",
+      "Luca Tanzi",
+      "Carlo Gabbanini"
+    ],
+    "categories": [
+      "cond-mat.quant-gas",
+      "physics.atom-ph",
+      "quant-ph"
+    ],
+    "published": "2024-03-27T15:20:51Z",
+    "updated": "2025-03-05T15:18:59Z",
+    "n_chunks": 40
+  },
+  "2403.20331v2": {
+    "title": "Unsolvable Problem Detection: Robust Understanding Evaluation for Large Multimodal Models",
+    "authors": [
+      "Atsuyuki Miyai",
+      "Jingkang Yang",
+      "Jingyang Zhang",
+      "Yifei Ming",
+      "Qing Yu",
+      "Go Irie",
+      "Yixuan Li",
+      "Hai Li",
+      "Ziwei Liu",
+      "Kiyoharu Aizawa"
+    ],
+    "categories": [
+      "cs.CV",
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "published": "2024-03-29T17:59:53Z",
+    "updated": "2025-04-09T17:13:27Z",
+    "n_chunks": 123
+  },
+  "2404.00822v2": {
+    "title": "Impact of heterogeneity on infection probability: Insights from single-hit dose-response models",
+    "authors": [
+      "Francisco J. Perez-Reche"
+    ],
+    "categories": [
+      "q-bio.PE",
+      "math.PR"
+    ],
+    "published": "2024-03-31T23:18:53Z",
+    "updated": "2025-04-09T11:46:44Z",
+    "n_chunks": 88
+  },
+  "2404.02228v3": {
+    "title": "Seemingly unrelated Bayesian additive regression trees for cost-effectiveness analyses in healthcare",
+    "authors": [
+      "Jonas Esser",
+      "Mateus Maia",
+      "Andrew C. Parnell",
+      "Judith Bosmans",
+      "Hanneke van Dongen",
+      "Thomas Klausch",
+      "Keefe Murphy"
+    ],
+    "categories": [
+      "stat.ME",
+      "econ.EM",
+      "stat.AP"
+    ],
+    "published": "2024-04-02T18:32:51Z",
+    "updated": "2025-02-26T13:42:46Z",
+    "n_chunks": 79
+  },
+  "2404.03773v2": {
+    "title": "An Optimal Control Problem Arising in Sailboat Trajectory Optimization",
+    "authors": [
+      "Carlo Ciccarella",
+      "Robert C. Dalang",
+      "Laura Vinckenbosch"
+    ],
+    "categories": [
+      "math.OC",
+      "math.PR"
+    ],
+    "published": "2024-04-04T19:34:48Z",
+    "updated": "2025-04-09T13:20:16Z",
+    "n_chunks": 150
+  }
+}

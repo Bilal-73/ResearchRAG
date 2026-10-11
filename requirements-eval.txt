@@ -1,0 +1,8 @@
+# ── Evaluation extras: only needed for `python scripts/run_evaluation.py --ragas` ──
+# The default judge (evaluation/llm_judge.py) needs NOTHING beyond requirements.txt.
+-r requirements.txt
+ragas>=0.3,<0.4
+langchain-openai>=0.3            # imported directly by evaluation/ragas_eval.py
+langchain-community<0.4.2
+datasets>=2.19                   # imported directly by evaluation/ragas_eval.py
+tqdm>=4.66

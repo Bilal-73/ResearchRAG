@@ -1,0 +1,3312 @@
+{
+  "run_at": "2026-10-03T20:08:20",
+  "config": {
+    "n_queries": 60,
+    "seed": 20261003,
+    "sources": null,
+    "types": null,
+    "top_k": 20,
+    "rerank": true,
+    "rerank_top_k": 5,
+    "enable_query_rewrite": true,
+    "enable_hyde": true,
+    "enable_planner": true,
+    "enable_context_grading": true,
+    "chunk_max_tokens": 400,
+    "caption_figures": false,
+    "judge": "ragas"
+  },
+  "eval_set": {
+    "n_selected": 60,
+    "n_total_queries": 3045,
+    "n_indexed_papers": 50,
+    "n_dropped_unindexed": 2672,
+    "by_type": {
+      "abstractive": 35,
+      "extractive": 25
+    },
+    "by_source": {
+      "text": 39,
+      "text-table-image": 5,
+      "text-image": 14,
+      "text-table": 2
+    }
+  },
+  "retrieval": {
+    "top_k": 20,
+    "n_questions": 60,
+    "overall": {
+      "recall@k_doc": 1.0,
+      "mrr_doc": 1.0,
+      "ndcg@k_doc": 1.0,
+      "recall@k_section": 0.8833,
+      "mrr_section": 0.7528,
+      "ndcg@k_section": 0.7858,
+      "n": 60
+    },
+    "by_type": {
+      "abstractive": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.8857,
+        "mrr_section": 0.7143,
+        "ndcg@k_section": 0.7576,
+        "n": 35
+      },
+      "extractive": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.88,
+        "mrr_section": 0.8067,
+        "ndcg@k_section": 0.8252,
+        "n": 25
+      }
+    },
+    "by_source": {
+      "text": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.9487,
+        "mrr_section": 0.8205,
+        "ndcg@k_section": 0.8535,
+        "n": 39
+      },
+      "text-image": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 0.6429,
+        "mrr_section": 0.4881,
+        "ndcg@k_section": 0.5258,
+        "n": 14
+      },
+      "text-table": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 1.0,
+        "mrr_section": 0.6667,
+        "ndcg@k_section": 0.75,
+        "n": 2
+      },
+      "text-table-image": {
+        "recall@k_doc": 1.0,
+        "mrr_doc": 1.0,
+        "ndcg@k_doc": 1.0,
+        "recall@k_section": 1.0,
+        "mrr_section": 1.0,
+        "ndcg@k_section": 1.0,
+        "n": 5
+      }
+    }
+  },
+  "retrieval_details": [
+    {
+      "query_id": "8a4a3055-8be0-4bb8-8f7e-4cced4dcdfc5",
+      "question": "What effect did meritocratic centralization have on the number of occupational elites from urban areas?",
+      "doc_id": "2402.04429v3",
+      "section_id": 10,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 13,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "07a949ae-ff39-490b-aed5-b0ae16ba8a7b",
+      "question": "How do diagrammatic categories contribute to understanding exotic subfactors?",
+      "doc_id": "2402.03637v2",
+      "section_id": 19,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.02228v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "d592dbe2-711c-4538-a23a-8450accf69aa",
+      "question": "Is it possible for an agent to have zero swap regret using a contextual no-swap-regret algorithm?",
+      "doc_id": "2402.09721v6",
+      "section_id": 12,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 21,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "427e0f12-beff-4368-bc05-9c19c8ce8c8a",
+      "question": "Does lowering the bandgap affect whether a device operates more like a heat engine or a heat pump in certain quadrants?",
+      "doc_id": "2402.07527v3",
+      "section_id": 9,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 11,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "8b8ca9ad-5bb0-4cf5-9b2c-4cf69635e060",
+      "question": "Is the sentiment scoring system for product reviews the same as for movie reviews?",
+      "doc_id": "2403.05821v2",
+      "section_id": 37,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 37,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 40,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 38,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 26,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "75314235-5943-4a14-8a89-ce52cae14bd3",
+      "question": "Does a larger bandgap energy ($E_g \\gg k_B T_h$) result in higher efficiency at maximum power?",
+      "doc_id": "2402.07527v3",
+      "section_id": 4,
+      "type": "extractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 3,
+      "retrieved": [
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 11,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 5,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 12,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "7ed67fe7-ff59-4c2a-9ec9-8ef3930b8692",
+      "question": "Is there a difference in usefulness between qualitative and quantitative margin matrices for manipulating Borda and Black's?",
+      "doc_id": "2401.16412v4",
+      "section_id": 11,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 11,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 13,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 12,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "8734750f-6243-47a5-999a-9e184433782b",
+      "question": "What factors influence the efficiency of dual radiative heat engines?",
+      "doc_id": "2402.07527v3",
+      "section_id": 11,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 13,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.07527v3",
+          "section_id": 2,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "245a7938-23b1-473b-9990-f522aeb6f7a4",
+      "question": "Why are first-order models valuable for estimating the performance impact of new VM features?",
+      "doc_id": "2403.04635v2",
+      "section_id": 28,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 28,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "d435f496-2aa9-4c54-9aa1-138f5f383d3d",
+      "question": "What is a functional dependency in relational data?",
+      "doc_id": "2403.05821v2",
+      "section_id": 9,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 27,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 28,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "680bb2b4-063a-4fb0-9088-ea6cf09c9d67",
+      "question": "Why might observed roughness not reflect the true nature of spot volatility processes?",
+      "doc_id": "2401.03345v2",
+      "section_id": 19,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03345v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "9a9a8ebe-aca2-4c9e-8760-ddfb21585448",
+      "question": "How does an auction-managed AMM differ from traditional AMMs?",
+      "doc_id": "2403.03367v4",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.03367v4",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03367v4",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03367v4",
+          "section_id": 5,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03367v4",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03367v4",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "b3bdcaa7-d6af-4312-9e80-7443d3055957",
+      "question": "What does testing significance involve when considering joint hypotheses like $x_j = z_m$?",
+      "doc_id": "2402.02272v2",
+      "section_id": 15,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.02272v2",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.02272v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "c8c9f373-0fd8-4c6a-9eb9-f542b362c42a",
+      "question": "Is there an upper bound for payments to agents in contract design?",
+      "doc_id": "2402.09721v6",
+      "section_id": 18,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 18,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "d3ab4530-6337-4cbd-8363-fd54f174e9f6",
+      "question": "How do Hilbert space-valued stochastic equations contribute to understanding agent dynamics?",
+      "doc_id": "2403.01012v4",
+      "section_id": 1,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 3,
+      "retrieved": [
+        {
+          "paper_id": "2403.01012v4",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01012v4",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01012v4",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01012v4",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01012v4",
+          "section_id": 4,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "aa6f5909-42e7-4321-bee4-ce725f3aa7dd",
+      "question": "What is the expected value of the adjusted OLS estimator?",
+      "doc_id": "2403.05373v2",
+      "section_id": 18,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "abac4f71-391c-4853-90d8-da56068346d1",
+      "question": "What is the Euclidean norm defined for all \\( x \\in \\mathbb{R}^{n} \\)?",
+      "doc_id": "2401.07317v2",
+      "section_id": 7,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.07317v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07317v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07317v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07317v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07317v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "40b75706-3856-4768-ad60-d331b8739f84",
+      "question": "Why might aggregation be suitable when only average effects are considered in simulation studies?",
+      "doc_id": "2401.07294v4",
+      "section_id": 7,
+      "type": "abstractive",
+      "source": "text-table",
+      "doc_rank": 1,
+      "section_rank": 3,
+      "retrieved": [
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 5,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "99942256-10b1-4438-8601-a93975c47b27",
+      "question": "How does the number of qubits influence superradiant heat current enhancement?",
+      "doc_id": "2401.17469v2",
+      "section_id": 5,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2401.17469v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.17469v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.17469v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.17469v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.17469v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "4877fdf9-0047-4024-a160-dff6c8cc2304",
+      "question": "Why might traditional subjective expected utility have limitations when some objects have already been sampled?",
+      "doc_id": "2403.01421v2",
+      "section_id": 6,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "2109c438-8756-4a2e-9bd1-dc2444f520a5",
+      "question": "Is there a point where both velocities are equal on the ascent-time surface plot?",
+      "doc_id": "2403.03363v6",
+      "section_id": 5,
+      "type": "extractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 17,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "e1e655ca-353d-4c70-b11a-739803ebe182",
+      "question": "Why is microbial growth rate important in determining successful infections?",
+      "doc_id": "2404.00822v2",
+      "section_id": 14,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2404.00822v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.00822v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.00822v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.00822v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.00822v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "829c817c-5bc5-4a66-ba56-64b93c94ad98",
+      "question": "How do different biological pathway datasets compare in terms of distortion when using Euclidean versus mixed-curvature embeddings?",
+      "doc_id": "2401.15478v2",
+      "section_id": 21,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 4,
+      "retrieved": [
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 9,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 21,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "e713c2e0-628c-485d-ae53-6d1eee1c07fb",
+      "question": "Does the model of the generalized principal-agent problem involve Stackelberg games?",
+      "doc_id": "2402.09721v6",
+      "section_id": 3,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09721v6",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "983044b7-55b9-4a52-8434-4b07d877634d",
+      "question": "What is a notable benefit of using multilevel metamodels (MLMM) in simulation studies?",
+      "doc_id": "2401.07294v4",
+      "section_id": 15,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 5,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 15,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.07294v4",
+          "section_id": 15,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "d09cd393-8cca-45eb-a057-2d8ee18385dd",
+      "question": "What factors influence the effectiveness of autoregressive models in audio inpainting?",
+      "doc_id": "2403.04433v3",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2403.04433v3",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04433v3",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04433v3",
+          "section_id": 5,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2403.04433v3",
+          "section_id": 5,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2403.04433v3",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "1e4c9bb1-f974-4df7-8ad6-a216e8ed0369",
+      "question": "Does self-reflection allow models to evaluate their own answers?",
+      "doc_id": "2403.20331v2",
+      "section_id": 24,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 24,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 9,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 9,
+          "chunk_type": "table"
+        },
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "df8ac158-41e3-436d-a146-d30df2647c0b",
+      "question": "Does any VMA exceed a size of 1GB?",
+      "doc_id": "2403.04635v2",
+      "section_id": 24,
+      "type": "extractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.04635v2",
+          "section_id": 25,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "117a8a07-ce3a-49d6-b282-e05e5f62a94e",
+      "question": "Is detailed justification required when refining problems during the curation process?",
+      "doc_id": "2403.20331v2",
+      "section_id": 21,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.20331v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.03305v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.02228v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "de261def-2005-4f68-90cb-fc51b65ef12d",
+      "question": "Does the probabilistic counter use more than $\\mathcal{O}(1)$ bits to detect if it has exceeded a threshold?",
+      "doc_id": "2402.13385v2",
+      "section_id": 31,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 31,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 31,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 41,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 41,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 31,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "0d9b8d7b-8035-4bb6-941d-0055d46dd076",
+      "question": "What problem does hyperbolic geometry help to address in vector quantization?",
+      "doc_id": "2403.13015v2",
+      "section_id": 25,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 3,
+      "retrieved": [
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 25,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 30,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "3c48e345-630b-457f-874b-a3066e5a43f9",
+      "question": "How does the Job Training Partnership Act (JTPA) relate to dynamic treatment regimes in education?",
+      "doc_id": "2403.00422v2",
+      "section_id": 18,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 18,
+          "chunk_type": "table"
+        }
+      ]
+    },
+    {
+      "query_id": "343b39d2-3e33-41ab-88cc-fef0e4251af1",
+      "question": "Why is mean ascent velocity (VAM) important in cycling training metrics?",
+      "doc_id": "2403.03363v6",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 10,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "9974ac67-b3f7-4cda-9c8f-038b798fe504",
+      "question": "What is the statistical model used for mean estimation with known variance?",
+      "doc_id": "2402.04840v3",
+      "section_id": 10,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.04840v3",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04840v3",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04840v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04840v3",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04840v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "226b0996-eb32-41c9-b5ba-57560bce1ea6",
+      "question": "Are the embeddings used to initialize weights for models in an edge prediction task?",
+      "doc_id": "2401.15478v2",
+      "section_id": 19,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 19,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 11,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.15478v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "ad204da3-bb64-4e8d-95bb-e3d050dfc7ba",
+      "question": "Why is a domain-aware evaluation scheme important for predicting T-cell responses?",
+      "doc_id": "2403.12117v2",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "2673645e-f1d9-418f-8888-310bf80b1604",
+      "question": "Can the best linear unbiased predictor of a stochastic process be expressed as an optimal smoothing function in an RKHS?",
+      "doc_id": "2403.05373v2",
+      "section_id": 6,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "1f8b8327-e7c2-4830-a77a-94348d0f7e83",
+      "question": "Why is the concept of matching classes important in category theory?",
+      "doc_id": "2401.12638v7",
+      "section_id": 3,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2401.12638v7",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.12638v7",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.12638v7",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.11030v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.12638v7",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "32d28ebc-4725-4176-8de6-d04f83aa790d",
+      "question": "How do Large Language Models (LLMs) enhance batch data analytics?",
+      "doc_id": "2403.05821v2",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "aef516d0-ea1b-4873-b478-ca2b1b8e3b76",
+      "question": "Can subjective beliefs replace objective stochastic processes in this approach?",
+      "doc_id": "2403.01421v2",
+      "section_id": 7,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 7,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "02205406-1428-4f9d-93f0-360c574805b7",
+      "question": "How do the concepts of Deligne's conjecture extend to quantum analogs within mathematical categories?",
+      "doc_id": "2402.03637v2",
+      "section_id": 3,
+      "type": "abstractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.03637v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "ecb5322e-468e-4ca1-bcec-57e4404e41af",
+      "question": "Do existing methods for AQA explore audio information in videos?",
+      "doc_id": "2402.09444v3",
+      "section_id": 2,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.09444v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09444v3",
+          "section_id": 16,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09444v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09444v3",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.09444v3",
+          "section_id": 16,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "337aeef5-3269-4ba3-b4db-014e98bb65f5",
+      "question": "What is the relationship between nitrogen oxides and tropospheric ozone in environmental studies?",
+      "doc_id": "2403.05373v2",
+      "section_id": 12,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05373v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "58266700-b97a-49f0-a8fb-96ded6e11a19",
+      "question": "How did the government announce each year's admission policy?",
+      "doc_id": "2402.04429v3",
+      "section_id": 9,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 2,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "010ee499-211a-4195-a32b-15ce468c3588",
+      "question": "For which data-generating process does the conditional confidence interval have a coverage frequency different from that of the conventional confidence interval?",
+      "doc_id": "2403.00422v2",
+      "section_id": 17,
+      "type": "abstractive",
+      "source": "text-table",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 17,
+          "chunk_type": "table"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 22,
+          "chunk_type": "table"
+        },
+        {
+          "paper_id": "2403.00422v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "c78b0dd7-2e8e-4f61-a9fb-4e49af5c9d80",
+      "question": "What role does wind direction play in sailboat maneuvering strategies?",
+      "doc_id": "2404.03773v2",
+      "section_id": 3,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2404.03773v2",
+          "section_id": 3,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2404.03773v2",
+          "section_id": 3,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2404.03773v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.03773v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2404.03773v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "0c1eac54-193d-4460-a6db-69539b6bf862",
+      "question": "What property does the random serial dictatorship allocation mechanism fail to satisfy?",
+      "doc_id": "2401.11899v3",
+      "section_id": 18,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2401.11899v3",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.11899v3",
+          "section_id": 18,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.11899v3",
+          "section_id": 8,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.11899v3",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.11899v3",
+          "section_id": 11,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "b4a9e0ff-60ec-4e0a-9ccb-9e74ddd15f99",
+      "question": "What role does invariance play in Condorcet-based voting systems?",
+      "doc_id": "2401.05657v5",
+      "section_id": 0,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2401.05657v5",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.05657v5",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.05657v5",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.05657v5",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.16412v4",
+          "section_id": 4,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "15fb0df5-f258-4d2b-86cf-e9de4c2de5b4",
+      "question": "In what ways can theoretical models explore belief updating with respect to known versus unknown objects?",
+      "doc_id": "2403.01421v2",
+      "section_id": 5,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": null,
+      "retrieved": [
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.01421v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "257ec56e-d63d-45b6-9a17-3e598a98a916",
+      "question": "Why do singularities form in viscosity solutions of HJB equations?",
+      "doc_id": "2403.05412v2",
+      "section_id": 1,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05412v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05412v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05412v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05412v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05412v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "ce80e7b0-d3fc-4ac1-a386-6d1c9e8705bf",
+      "question": "What are some properties that define a semi-metric used in max-sum matchings?",
+      "doc_id": "2403.08977v2",
+      "section_id": 1,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 2,
+      "retrieved": [
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 0,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 3,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "700551de-c288-4553-88e7-4db17c38527f",
+      "question": "Does neglecting changes in kinetic energy become more justifiable for longer ascents?",
+      "doc_id": "2403.03363v6",
+      "section_id": 14,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.03363v6",
+          "section_id": 10,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "79c6c304-21af-4008-9399-e6d453753dce",
+      "question": "How does the GGR algorithm reduce the number of recursive calls compared to iterating through all possible distinct values?",
+      "doc_id": "2403.05821v2",
+      "section_id": 8,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 8,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 21,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.05821v2",
+          "section_id": 43,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "6f441cc1-412c-44ae-aee6-c88cde6614f3",
+      "question": "What happens to outgoing transitions from the final state in an rDFA for a suffix-free language?",
+      "doc_id": "2402.13385v2",
+      "section_id": 32,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 32,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 42,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 20,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 45,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.13385v2",
+          "section_id": 45,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "ec7781bd-2b97-4ae7-ad4c-4c438dd07555",
+      "question": "Is there more \"room\" at the boundaries in hyperbolic or Euclidean spaces for large radii?",
+      "doc_id": "2403.13015v2",
+      "section_id": 26,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 26,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 29,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 10,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 30,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 6,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "0a8c5eaa-1fef-450d-8499-5c7a9148e8de",
+      "question": "What role do collinear arrangements play in determining common intersections among disks?",
+      "doc_id": "2403.08977v2",
+      "section_id": 4,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 2,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 4,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.08977v2",
+          "section_id": 4,
+          "chunk_type": "figure"
+        }
+      ]
+    },
+    {
+      "query_id": "1b4d4eeb-b2d9-4e5b-b3e5-fd52badb184c",
+      "question": "Under what condition does a complex balanced CRN mimic an irreversible CRN with absolute concentration robustness?",
+      "doc_id": "2401.06987v2",
+      "section_id": 14,
+      "type": "extractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 3,
+      "retrieved": [
+        {
+          "paper_id": "2401.06987v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.06987v2",
+          "section_id": 22,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.06987v2",
+          "section_id": 14,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.06987v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2401.06987v2",
+          "section_id": 1,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "12c98955-b6c0-4014-a467-8f39f6922d40",
+      "question": "Does HyperVQ form more compact clusters than KmeansVQ?",
+      "doc_id": "2403.13015v2",
+      "section_id": 17,
+      "type": "extractive",
+      "source": "text-table-image",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 17,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 17,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 17,
+          "chunk_type": "table"
+        },
+        {
+          "paper_id": "2403.13015v2",
+          "section_id": 16,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "dba75be5-7ba0-4918-bfec-3cdff2abaee3",
+      "question": "How do BASE-T and ADA-T models differ in their prediction performance for peptide sources?",
+      "doc_id": "2403.12117v2",
+      "section_id": 24,
+      "type": "abstractive",
+      "source": "text-image",
+      "doc_rank": 1,
+      "section_rank": 4,
+      "retrieved": [
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 11,
+          "chunk_type": "figure"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 12,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 24,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2403.12117v2",
+          "section_id": 25,
+          "chunk_type": "text"
+        }
+      ]
+    },
+    {
+      "query_id": "adda272d-9499-4dc2-a1e0-68969915b916",
+      "question": "What institutional factors were investigated to see if they correlated with school admission reforms?",
+      "doc_id": "2402.04429v3",
+      "section_id": 9,
+      "type": "abstractive",
+      "source": "text",
+      "doc_rank": 1,
+      "section_rank": 1,
+      "retrieved": [
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 9,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 3,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 22,
+          "chunk_type": "text"
+        },
+        {
+          "paper_id": "2402.04429v3",
+          "section_id": 3,
+          "chunk_type": "text"
+        }
+      ]
+    }
+  ],
+  "answer_quality": {
+    "avg_faithfulness": 0.9085,
+    "avg_answer_relevancy": 0.7352,
+    "avg_context_precision": 0.9011,
+    "avg_context_recall": 0.8167,
+    "n_questions": 60,
+    "n_scored": {
+      "faithfulness": 58,
+      "answer_relevancy": 60,
+      "context_precision": 49,
+      "context_recall": 60
+    },
+    "by_source": {
+      "text": {
+        "avg_faithfulness": 0.9011,
+        "avg_answer_relevancy": 0.8104,
+        "avg_context_precision": 0.9161,
+        "avg_context_recall": 0.8333,
+        "n": 39
+      },
+      "text-image": {
+        "avg_faithfulness": 0.8926,
+        "avg_answer_relevancy": 0.636,
+        "avg_context_precision": 0.8952,
+        "avg_context_recall": 0.6786,
+        "n": 14
+      },
+      "text-table": {
+        "avg_faithfulness": 0.9285,
+        "avg_answer_relevancy": 0.4002,
+        "avg_context_precision": 0.6666,
+        "avg_context_recall": 1.0,
+        "n": 2
+      },
+      "text-table-image": {
+        "avg_faithfulness": 1.0,
+        "avg_answer_relevancy": 0.5607,
+        "avg_context_precision": 0.9233,
+        "avg_context_recall": 1.0,
+        "n": 5
+      }
+    },
+    "details": [
+      {
+        "query_id": "8a4a3055-8be0-4bb8-8f7e-4cced4dcdfc5",
+        "question": "What effect did meritocratic centralization have on the number of occupational elites from urban areas?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Meritocratic centralization resulted in a greater number of occupational elites coming from urban areas. Specifically, the number of urban-born elites increased by $10-20 \\%$ for the cohorts exposed to centralization compared to those in a decentralized system. Additionally, the centralized system also increased the number of elites living in urban areas in their adulthood [S1][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9766,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "07a949ae-ff39-490b-aed5-b0ae16ba8a7b",
+        "question": "How do diagrammatic categories contribute to understanding exotic subfactors?",
+        "source": "text-table-image",
+        "type": "abstractive",
+        "answer": "The excerpts provide some insights into the relationship between diagrammatic categories and exotic subfactors. Specifically, in the context of the paper, it is noted that the case of $F_{4}$ at level 4 is particularly interesting due to its categorical version of the automorphism of the fusion ring. This leads to a braided equivalence that may be relevant to the study of exotic subfactors. The observation made by NS and KM indicates that the dimensions of $F_{4}$ at level 4 are related to the dimensions of objects in the Extended Haagerup subfactor, and Edie-Michell's inquiry strengthens this connection by questioning whether the center of the Extended Haagerup fusion categories can be viewed as an Evans-Gannon grafting of $F_{4}$ level 4 using a braiding-reversing autoequivalence [S1].\n\nThis suggests that diagrammatic categories, particularly through their braided structures and relationships to fusion categories, play a significant role in understanding exotic subfactors in mathematics. However, further details on the specific contributions of diagrammatic categories beyond this context are not reported in the retrieved excerpts.",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.7,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "d592dbe2-711c-4538-a23a-8450accf69aa",
+        "question": "Is it possible for an agent to have zero swap regret using a contextual no-swap-regret algorithm?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "This is not reported in the retrieved context. The excerpts discuss the existence of contextual no-regret and contextual no-swap-regret algorithms, along with their regret bounds, but do not provide information on the possibility of achieving zero swap regret.",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "427e0f12-beff-4368-bc05-9c19c8ce8c8a",
+        "question": "Does lowering the bandgap affect whether a device operates more like a heat engine or a heat pump in certain quadrants?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, lowering the bandgap affects the operation of the device. For low bandgaps, the gap between the heat engine and heat pump operating regions becomes larger, particularly in the TPX quadrant, where the device is almost always capable of operating as a heat engine as long as \\(\\mu_{c} \\geq \\mu_{h}\\). Consequently, TPX devices are not able to operate as heat pumps for such low bandgaps [S2].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7255,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "8b8ca9ad-5bb0-4cf5-9b2c-4cf69635e060",
+        "question": "Is the sentiment scoring system for product reviews the same as for movie reviews?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "This is not reported in the retrieved context. The excerpts cover various user prompts for sentiment scoring in both movies and products, but do not specify whether the scoring systems are the same or different.",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "75314235-5943-4a14-8a89-ce52cae14bd3",
+        "question": "Does a larger bandgap energy ($E_g \\gg k_B T_h$) result in higher efficiency at maximum power?",
+        "source": "text-image",
+        "type": "extractive",
+        "answer": "Yes, a larger bandgap energy ($E_g > k_B T_h$) results in higher efficiency at maximum power. Specifically, for a heat source temperature of 600 K, the efficiency at maximum power ($\\eta_{\\text{MPP}}^{E_{g} \\gg k_{B} T_{h}}$) is 17.7% when $E_g \\gg k_B T_h$. Additionally, the power output increases with $E_g$, being already 50% larger than that of single engines for $E_g = 1.9 k_B T_h$ [S1][S2].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Efficiency at maximum power is 17.7% when E_g > k_B T_h; Power output is 50% larger than single engines for E_g = 1.9 k_B T_h; E_g > k_B T_h results in higher efficiency at maximum power). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 0.75,
+        "answer_relevancy": 0.8848,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "7ed67fe7-ff59-4c2a-9ec9-8ef3930b8692",
+        "question": "Is there a difference in usefulness between qualitative and quantitative margin matrices for manipulating Borda and Black's?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, there is a difference in usefulness between qualitative and quantitative margin matrices for manipulating Borda and Black's methods. The profitability of manipulation did not show a substantial increase when MLPs learned to manipulate based on the more informative margin matrix instead of the majority matrix, except in the case of Borda and Black's methods, particularly for 6 candidates. In fact, the qualitative margin matrix was about as useful as the margin matrix for learning to manipulate Borda and Black's methods [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The profitability of manipulation showed a substantial increase when MLPs learned to manipulate based on the more informative margin matrix ; The qualitative margin matrix was about as useful as the margin matrix for learning to manipulate Borda and Black's methods.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 0.8,
+        "answer_relevancy": 0.989,
+        "context_precision": 0.8667,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "8734750f-6243-47a5-999a-9e184433782b",
+        "question": "What factors influence the efficiency of dual radiative heat engines?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "The efficiency of dual radiative heat engines is influenced by several factors:\n\n1. **Thermalisation Losses**: The efficiency is several percentage points below usual efficiency limits due to thermalisation losses, which can be mitigated through spectral filtering [S1].\n\n2. **Operating Conditions**: The performance is analyzed first at the radiative limit and then with non-radiative losses included, highlighting the respective merits of each engine [S2].\n\n3. **Entropy Production**: The TRNEL (Thermodynamic Radiative Non-Equilibrium Limit) achieves the highest efficiencies due to strong decay of entropy production, which decreases faster than power output [S4].\n\n4. **Bandgap Energy**: The advantage of TRNEL operation diminishes for large bandgap energies, as all radiative engines can approach Carnot efficiency in open-circuit conditions when \\(E_{g} \\rightarrow \\infty\\) [S4].\n\n5. **Temperature Difference**: The operating temperature difference \\(T_{h}-T_{c}\\) can be reduced by thermal resistance effects at the thermostats, impacting efficiency [S1].\n\nThese factors collectively determine the maximum achievable power and efficiency of dual radiative heat engines.\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (TRNEL achieves the highest efficiencies due to strong decay of entropy production; The advantage of TRNEL operation diminishes for large bandgap energies; The operating temperature difference can be reduced by thermal resistance effects at the thermostats). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 0.8875,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "245a7938-23b1-473b-9990-f522aeb6f7a4",
+        "question": "Why are first-order models valuable for estimating the performance impact of new VM features?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "First-order models are valuable for estimating the performance impact of new VM features because they are typically analytical and provide a quick way to approximate VM overheads, such as fixed latency for page table walks (PTW). This allows researchers to rapidly estimate the performance implications of new VM designs without the need for extensive simulations. However, it is important to note that these models overlook critical dynamic effects arising from hardware and OS interactions, which can significantly influence evaluation results [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 0.8889,
+        "answer_relevancy": 1.0,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "d435f496-2aa9-4c54-9aa1-138f5f383d3d",
+        "question": "What is a functional dependency in relational data?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "A functional dependency (FD) is a constraint between two sets of attributes in a relation from the data. Specifically, for a relation schema \\( R \\) and nonempty sets of attributes \\( X \\) and \\( Y \\) in \\( R \\), an instance \\( r \\) of \\( R \\) satisfies the FD \\( X \\leftrightarrow Y \\) if for every pair of tuples \\( t_{1} \\) and \\( t_{2} \\) in \\( r \\): if \\( t_{1}. X = t_{2}. X \\) then \\( t_{1}. Y = t_{2}. Y \\) and vice versa. This means that the values of \\( Y \\) are determined by the values of \\( X \\) [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8901,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "680bb2b4-063a-4fb0-9088-ea6cf09c9d67",
+        "question": "Why might observed roughness not reflect the true nature of spot volatility processes?",
+        "source": "text-table-image",
+        "type": "abstractive",
+        "answer": "Observed roughness in realized volatility may not reflect the true nature of spot volatility processes due to several reasons:\n\n1. The roughness in the realized volatility time series can arise primarily from the estimation error of spot volatility, rather than the inherent roughness of the spot volatility itself [S1].\n2. The estimated Hurst index for realized volatility is significantly smaller than 0.5, indicating that the roughness observed does not imply that the underlying process must be rough [S1][S4].\n3. The rough Bergomi model, for instance, has an estimated Hurst index of approximately 0.13, while the theoretical Hurst index for its spot volatility is 0.5, further illustrating the discrepancy between realized and spot volatility roughness [S4].\n\nThese findings suggest that the roughness observed in realized volatility may be misleading and not a reliable criterion for model selection.",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "9a9a8ebe-aca2-4c9e-8760-ddfb21585448",
+        "question": "How does an auction-managed AMM differ from traditional AMMs?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "**1. Key features of auction-managed automated market makers (AMMs):** \n- The auction-managed AMM operates through a censorship-resistant onchain auction to select a \"pool manager\" who can set the swap fee rate and capture arbitrage opportunities by trading against the pool with effectively zero fees [S1][S4]. \n- It aims to reduce losses to informed orderflow and maximize revenue from uninformed orderflow [S1]. \n- Liquidity providers can freely enter and exit the pool, although they must pay a small fee on withdrawal [S1][S4]. \n- The pool manager is responsible for dynamically adjusting the swap fee based on market conditions and noise trader sensitivity, which is expected to lead to higher liquidity in equilibrium compared to standard fixed-fee AMMs [S1][S3]. \n- The quoted prices in an auction-managed AMM are more accurate due to the pool operator's ability to perform arbitrage without incurring fees [S3]. \n\n**2. Key features of traditional automated market makers (AMMs):** \nThis is not reported in the retrieved context.",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "b3bdcaa7-d6af-4312-9e80-7443d3055957",
+        "question": "What does testing significance involve when considering joint hypotheses like $x_j = z_m$?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Testing significance for joint hypotheses such as $x_j = z_m$ involves testing the null hypotheses $H_{0}: \\beta_{j}=0$ and $\\gamma_{m}=0$. This can be accomplished using a Wald statistic, and the process is facilitated through the signifWald() function in the oneinfl package. It is important to note that the same regressors are likely to appear in both the $X$ and $Z$ matrices, which allows them to influence both the mean of the distribution through $\\lambda_{i}$ and the amount of one-inflation through $\\omega_{i}$ [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The process is facilitated through the signifWald() function in the oneinfl package.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9349,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "c8c9f373-0fd8-4c6a-9eb9-f542b362c42a",
+        "question": "Is there an upper bound for payments to agents in contract design?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, there is an upper bound for payments to agents in contract design. The principal's payment to the agent is required to be upper bounded by some constant \\( P < +\\infty \\), so \\( 0 \\leq x_{(i)} \\leq P \\) and \\( \\mathcal{X} = [0, P]^{d} \\) [S1][S2].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "d3ab4530-6337-4cbd-8363-fd54f174e9f6",
+        "question": "How do Hilbert space-valued stochastic equations contribute to understanding agent dynamics?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Hilbert space-valued stochastic equations contribute to understanding agent dynamics in linear-quadratic (LQ) mean field games (MFGs) by providing a framework where the state and control processes of each agent are modeled in separable Hilbert spaces. This approach allows for the incorporation of infinite-dimensional stochastic equations, specifically involving $Q$-Wiener processes and unbounded operators, which capture the complexities of agent interactions and their coupling through the average state of the population. The dynamics of each agent are influenced by stochastic volatility and multiplicative noise, which are essential for modeling realistic scenarios in large populations of agents [S1][S3][S4]. \n\nMoreover, the study establishes the well-posedness of a system of $N$ coupled semilinear stochastic evolution equations, which is crucial for ensuring that the dynamics are mathematically sound and can be analyzed effectively [S3][S5]. This rigorous foundation allows for the exploration of Nash equilibria and the asymptotic behavior of the system as the number of agents approaches infinity, thereby enhancing the understanding of strategic interactions in such games [S2][S3].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The study establishes the well-posedness of a system of N coupled semilinear stochastic evolution equations.; The dynamics of each agent are influenced by stochastic volatility and multiplicative noise.; The exploration of Nash equilibria and the asymptotic behavior of the system as the number of agents approaches infinity.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 0.6429,
+        "answer_relevancy": 0.8498,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "aa6f5909-42e7-4321-bee4-ce725f3aa7dd",
+        "question": "What is the expected value of the adjusted OLS estimator?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "The expected value of the adjusted OLS estimator is given by:\n\n$$\nE\\left[\\widehat{\\boldsymbol{\\theta}}_{O L S} \\mid \\mathbf{X}=\\mathbf{x}\\right] = \\left(\\mathbf{A}^{\\prime} \\mathbf{A}\\right)^{-1} \\mathbf{A}^{\\prime} \\tilde{\\mathbf{X}} \\boldsymbol{\\beta} + \\delta \\frac{\\sigma_{w}}{\\sigma_{z}}\\left[\\begin{array}{cc}\n\\mathbf{Q} & -\\mathbf{T} \\\\\n\\boldsymbol{\\Xi} & \\mathbf{S}^{-1}\n\\end{array}\\right]\\left[\\begin{array}{c}\n\\mathbf{X}^{\\prime} \\\\\n\\mathbf{B}^{\\prime}\n\\end{array}\\right] \\mathbf{R}_{\\phi_{w}}^{1 / 2} \\mathbf{R}_{\\phi_{x}}^{-1 / 2} \\mathbf{x}$$\n\nwhere $\\mathbf{Q}$, $\\mathbf{T}$, $\\boldsymbol{\\Xi}$, and $\\mathbf{S}$ are defined as follows:\n\n- $\\mathbf{Q}=\\left(\\tilde{\\mathbf{X}}^{\\prime} \\tilde{\\mathbf{X}}\\right)^{-1}+\\mathbf{T B}^{\\prime} \\tilde{\\mathbf{X}}\\left(\\tilde{\\mathbf{X}}^{\\prime} \\tilde{\\mathbf{X}}\\right)^{-1}$\n- $\\mathbf{T}=\\left(\\tilde{\\mathbf{X}}^{\\prime} \\tilde{\\mathbf{X}}\\right)^{-1} \\tilde{\\mathbf{X}}^{\\prime} \\mathbf{B S}^{-1}$\n- $\\boldsymbol{\\Xi}=-\\mathbf{S}^{-1} \\mathbf{B}^{\\prime} \\tilde{\\mathbf{X}}\\left(\\tilde{\\mathbf{X}}^{\\prime} \\tilde{\\mathbf{X}}\\right)^{-1}$\n- $\\mathbf{S}=\\mathbf{B}^{\\prime} \\mathbf{B}-\\mathbf{B}^{\\prime} \\tilde{\\mathbf{X}}\\left(\\tilde{\\mathbf{X}}^{\\prime} \\tilde{\\mathbf{X}}\\right)^{-1} \\tilde{\\mathbf{X}}^{\\prime} \\mathbf{B}$ [S5].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "abac4f71-391c-4853-90d8-da56068346d1",
+        "question": "What is the Euclidean norm defined for all \\( x \\in \\mathbb{R}^{n} \\)?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "The Euclidean norm defined for all \\( x \\in \\mathbb{R}^{n} \\) is given by \n\n\\[\n\\|x\\|=\\left(\\sum_{i \\in[n]} x_{i}^{2}\\right)^{\\frac{1}{2}}.\n\\] \n\nThis is reported in the context of the paper [S1].",
+        "answer_kind": "rag",
+        "faithfulness": null,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "40b75706-3856-4768-ad60-d331b8739f84",
+        "question": "Why might aggregation be suitable when only average effects are considered in simulation studies?",
+        "source": "text-table",
+        "type": "abstractive",
+        "answer": "This is not reported in the retrieved context. \n\nThe excerpts discuss the advantages of multilevel metamodels (MLMM) over aggregation and other methods in simulation studies, particularly in handling clustered or dependent data and providing generalizability. They highlight the limitations of fixed effects and aggregation in the context of simulation conditions and the benefits of using random effects in modeling.",
+        "answer_kind": "rag",
+        "faithfulness": 0.8571,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "99942256-10b1-4438-8601-a93975c47b27",
+        "question": "How does the number of qubits influence superradiant heat current enhancement?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "The number of qubits, denoted as \\( N \\), influences the superradiant heat current enhancement in several ways:\n\n1. The maximum heat current \\( \\hat{Q}_{\\mathrm{h}}^{\\max} \\) scales with \\( N \\) as follows:\n $$\n \\hat{Q}_{\\mathrm{h}}^{\\max} \\equiv \\frac{\\gamma_{\\mathrm{h}} \\gamma_{\\mathrm{c}}}{\\gamma_{\\mathrm{h}}+\\gamma_{\\mathrm{c}}} \\hbar \\omega_{0} N(n_{\\mathrm{h}}-n_{\\mathrm{c}})\n $$\n This indicates that the heat current can be enhanced by a factor of \\( N \\) due to the collective coupling of the qubits to the thermal baths [S2].\n\n2. In the thermodynamic limit \\( N \\rightarrow \\infty \\), the bound on the heat current becomes saturable, and the collective spin operators behave similarly to bosonic operators, leading to enhanced rates by a factor of \\( N \\) since the qubits are coupled in parallel [S2].\n\n3. The superradiant effect, which contributes to the heat current, is present in the transient dynamics and is characterized by a summation of local and non-local coherent terms that scale as \\( N^2 \\) for non-local interactions, indicating a potential for super-extensive scaling effects [S3].\n\n4. While the super-extensive scaling of the heat current vanishes in the thermodynamic limit, the heat current remains enhanced by a temperature-dependent prefactor that diverges as the temperature increases, suggesting that the number of qubits can still play a significant role in finite systems [S4][S5].\n\nOverall, the enhancement of the superradiant heat current is directly proportional to the number of qubits, particularly in finite systems, and is influenced by their collective interactions with the thermal baths.\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The superradiant effect is characterized by a summation of local and non-local coherent terms that scale as N^2 for non-local interactions.; The enhancement of the superradiant heat current is directly proportional to the number of qubits.; The heat current remains enhanced by a temperature-dependent prefactor that diverges as the temperature increases.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9941,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "4877fdf9-0047-4024-a160-dff6c8cc2304",
+        "question": "Why might traditional subjective expected utility have limitations when some objects have already been sampled?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "Traditional subjective expected utility may have limitations when some objects have already been sampled because it is somewhat artificial to view the decision-making process at an interim basis where the decision maker can reason about all previously sampled objects in addition to the occurrence of novelty. This suggests that a more nuanced approach is needed, such as a hybrid model that starts with a completely \"delabeled\" description and then adds labels step-by-step as the process evolves. This is particularly relevant in the context of unawareness structures, which provide a framework for modeling the subjective perspectives of the decision maker as they gain awareness of previously sampled objects and potential novel objects [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 0.8889,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "2109c438-8756-4a2e-9bd1-dc2444f520a5",
+        "question": "Is there a point where both velocities are equal on the ascent-time surface plot?",
+        "source": "text-image",
+        "type": "extractive",
+        "answer": "Yes, the minimum ascent times are achieved when both velocities are equal, specifically at the points where \\( V_{1} = V_{2} \\). For example, for a power of \\( \\bar{P}=200 \\mathrm{~W} \\), \\( V_{1}=V_{2}=2.6842 \\mathrm{~m} / \\mathrm{s} \\) and \\( T=374.5267 \\mathrm{~s} \\); for \\( \\bar{P}=300 \\mathrm{~W} \\), \\( V_{1}=V_{2}=3.9450 \\mathrm{~m} / \\mathrm{s} \\) and \\( T=254.8288 \\mathrm{~s} \\); and for \\( \\bar{P}=400 \\mathrm{~W} \\), \\( V_{1}=V_{2}=5.1272 \\mathrm{~m} / \\mathrm{s} \\) and \\( T=196.0724 \\mathrm{~s} \\) [S5].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7208,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "e1e655ca-353d-4c70-b11a-739803ebe182",
+        "question": "Why is microbial growth rate important in determining successful infections?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "The microbial growth rate is crucial in determining successful infections because it is directly related to the basic reproductive ratio, \\( R \\). Infection occurs if \\( R > 1 \\), which means that each microbe must produce more than one offspring on average during its lifetime. The growth rate, denoted as \\( \\beta \\), and the death rate, denoted as \\( \\delta \\), are used to calculate \\( R \\) as \\( R = \\beta / \\delta \\). If \\( R < 1 \\), the infection fails to establish, indicating that a higher growth rate relative to the death rate is necessary for successful infection [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The growth rate is denoted as \\( \\beta \\) and the death rate as \\( \\delta \\); Infection occurs if \\( R > 1 \\); The calculation of \\( R \\) as \\( R = \\beta / \\delta \\)). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 0.9,
+        "answer_relevancy": 0.9819,
+        "context_precision": 0.9167,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "829c817c-5bc5-4a66-ba56-64b93c94ad98",
+        "question": "How do different biological pathway datasets compare in terms of distortion when using Euclidean versus mixed-curvature embeddings?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "**1.** This is not reported in the retrieved context.\n\n**2.** This is not reported in the retrieved context. \n\nThe excerpts discuss the comparison of mixed-curvature embeddings against Euclidean embeddings and other methods, noting that mixed-curvature product spaces provide marked reductions in distortion relative to the standard Euclidean embedding, with many graphs achieving a greater than 50% reduction in distortion [S1]. However, specific comparisons of distortion across different biological pathway datasets for either embedding type are not provided.",
+        "answer_kind": "rag",
+        "faithfulness": 0.6,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "e713c2e0-628c-485d-ae53-6d1eee1c07fb",
+        "question": "Does the model of the generalized principal-agent problem involve Stackelberg games?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, the model of the generalized principal-agent problem includes Stackelberg games, as stated in the excerpts [S1] and [S2].",
+        "answer_kind": "rag",
+        "faithfulness": 0.5,
+        "answer_relevancy": 0.9857,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "983044b7-55b9-4a52-8434-4b07d877634d",
+        "question": "What is a notable benefit of using multilevel metamodels (MLMM) in simulation studies?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "A notable benefit of using multilevel metamodels (MLMM) in simulation studies is that they can increase the precision of the estimated coefficients compared to the ordinary least squares (OLS) approach. The MLMM is always equally or more efficient than the comparable OLS metamodel, particularly in the case of Level 1 predictors, which can lead to improved statistical precision and power, thereby reducing computation time and enhancing the design and analysis of simulation studies [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (MLMM is always equally or more efficient than the comparable OLS metamodel; improved statistical precision and power; reducing computation time). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9317,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "d09cd393-8cca-45eb-a057-2d8ee18385dd",
+        "question": "What factors influence the effectiveness of autoregressive models in audio inpainting?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "The effectiveness of autoregressive models in audio inpainting is influenced by several factors:\n\n1. **Model Order ($p$)**: The choice of model order significantly affects the results. Increasing the model order up to $p=2048$ leads to higher Signal-to-Distortion Ratio (SDR) and Objective Difference Grade (ODG). However, increasing the order to $p=3072$ does not further improve quality, and similar observations hold for other configurations, such as a window/context length of 8192 with model order $p=4096$ [S1].\n\n2. **Inpainting Method**: Different inpainting methods respond differently to changes in model order. For instance, the gap-wise Janssen method shows a clear improvement with increasing model order, while the frame-wise Janssen method's results are also influenced by the chosen window shape [S1].\n\n3. **Window Shape**: The choice of window shape affects the results for the frame-wise Janssen method, with optimal results achieved using $p=512$ with a rectangular window and $p=1024$ with a Hann window [S1].\n\n4. **Estimator Choice**: The choice of autoregressive model estimator (e.g., LPC vs. Burg algorithm) also plays a role in the effectiveness of the inpainting methods [S3].\n\nThese factors collectively determine the quality of audio inpainting achieved through autoregressive modeling.\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Window/context length of 8192 with model order p=4096 is mentioned in the answer but not supported by the excerpts.; Frame-wise Janssen method's results are influenced by the chosen window shape, which is not explicitly supported by the excerpts.; Optimal results using p=512 with a rectangular window and p=1024 with a Hann window are not mentioned in the excerpts.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "1e4c9bb1-f974-4df7-8ad6-a216e8ed0369",
+        "question": "Does self-reflection allow models to evaluate their own answers?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, self-reflection is a method that allows the model to reflect on its own responses, and it has been shown that LLMs might have preliminary capabilities for judging and evaluating their own answers [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9001,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "df8ac158-41e3-436d-a146-d30df2647c0b",
+        "question": "Does any VMA exceed a size of 1GB?",
+        "source": "text-image",
+        "type": "extractive",
+        "answer": "This is not reported in the retrieved context. The excerpts discuss virtual memory (VM) characteristics, workloads, and the Virtuoso simulation framework, but do not provide information about the size of any virtual machine appliances (VMAs).",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "117a8a07-ce3a-49d6-b282-e05e5f62a94e",
+        "question": "Is detailed justification required when refining problems during the curation process?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, detailed justification is required when refining problems during the curation process. The excerpt states that if a problem needed to be refined, the reason was recorded in detail as a comment, and examples of such comments are provided to illustrate this practice [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "de261def-2005-4f68-90cb-fc51b65ef12d",
+        "question": "Does the probabilistic counter use more than $\\mathcal{O}(1)$ bits to detect if it has exceeded a threshold?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "No, the probabilistic counter can detect whether it has exceeded a certain threshold using only $\\mathcal{O}(1)$ bits [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 0.5,
+        "answer_relevancy": 0.8652,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "0d9b8d7b-8035-4bb6-941d-0055d46dd076",
+        "question": "What problem does hyperbolic geometry help to address in vector quantization?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Hyperbolic geometry helps to address the problem of codebook collapse in vector quantization. It does this by leveraging its exponential volume growth, which promotes more uniform cluster usage compared to Euclidean spaces. This characteristic reduces the likelihood of underutilization of codewords and stabilizes codeword usage, making collapse or extreme imbalance less likely than in polynomial-growth Euclidean counterparts [S1][S3][S5].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8467,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "3c48e345-630b-457f-874b-a3066e5a43f9",
+        "question": "How does the Job Training Partnership Act (JTPA) relate to dynamic treatment regimes in education?",
+        "source": "text-table-image",
+        "type": "abstractive",
+        "answer": "The Job Training Partnership Act (JTPA) is considered in the context of dynamic treatment regimes in education as it involves a sequence of treatments, specifically schooling and post-school training. Han (2024) estimates the partial ordering of treatment regimes and identifies the optimal regime for individuals participating in the JTPA program. The analysis focuses on the impact of receiving a high school diploma and participating in job training programs on welfare and earnings, using a dataset that combines JTPA data with information from the US Census and the National Center for Education Statistics (NCES) [S1][S2].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The analysis uses a dataset that combines JTPA data with information from the US Census and the National Center for Education Statistics (NC). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 0.9167,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "343b39d2-3e33-41ab-88cc-fef0e4251af1",
+        "question": "Why is mean ascent velocity (VAM) important in cycling training metrics?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Mean ascent velocity (VAM) is important in cycling training metrics because minimizing ascent time is equivalent to maximizing VAM for a given uphill. VAM serves as a common training metric that quantifies the speed of gaining altitude, which is crucial for cyclists aiming to improve their performance in uphill segments. The study illustrates that maintaining a constant ground speed, which maximizes VAM, leads to shorter ascent times compared to maintaining constant instantaneous power, especially when the slope varies [S1][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 0.75,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "9974ac67-b3f7-4cda-9c8f-038b798fe504",
+        "question": "What is the statistical model used for mean estimation with known variance?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "The statistical model used for mean estimation with known variance is given by \\( \\mathcal{P}_{\\sigma^{2}}=\\left\\{N\\left(\\theta, \\sigma^{2}\\right): \\theta \\in \\mathbb{R}\\right\\} \\), where the original sensitive data \\( X_{1}, \\ldots, X_{n} \\) are independently and identically distributed as \\( P_{\\theta, \\sigma^{2}}=N\\left(\\theta, \\sigma^{2}\\right) \\) with a known variance \\( \\sigma^{2}>0 \\) [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": null,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "226b0996-eb32-41c9-b5ba-57560bce1ea6",
+        "question": "Are the embeddings used to initialize weights for models in an edge prediction task?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, the embeddings learned by the embedding model are used to initialize the weights of the embedding layer for the models in the edge prediction task, specifically for the Euclidean GCN and Product GCN. These embeddings are then further trained via backpropagation during the edge prediction task [S1].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8684,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "ad204da3-bb64-4e8d-95bb-e3d050dfc7ba",
+        "question": "Why is a domain-aware evaluation scheme important for predicting T-cell responses?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "A domain-aware evaluation scheme is important for predicting T-cell responses because it helps ensure that performance estimates are not inflated by shortcuts, such as predicting based on the majority class of a peptide source or an MHC allele. By evaluating models on subsets of data that contain only one MHC allele and one peptide source, the evaluation can reflect what a model has learned beyond these shortcuts. This approach allows for a more accurate assessment of the model's predictive power and helps mitigate the risks associated with shortcut learning, which can lead to misleading performance metrics [S2][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9999,
+        "context_precision": 1.0,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "2673645e-f1d9-418f-8888-310bf80b1604",
+        "question": "Can the best linear unbiased predictor of a stochastic process be expressed as an optimal smoothing function in an RKHS?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, the best linear unbiased (or kriging) predictor of a stochastic process \\( Y(\\mathbf{s}) \\) can be expressed as the value of the optimal smoothing function \\( f_{x}(\\mathbf{s}) \\) in a reproducing kernel Hilbert space (RKHS). Both can be represented in the form:\n\n$$\nf_{x}(\\mathbf{s})=\\left(\\mathbf{u}(\\mathbf{s})^{\\prime} \\mathbf{G}_{\\theta}+\\mathbf{k}(\\mathbf{s})^{\\prime} \\mathbf{M}_{\\theta}\\right) \\mathbf{y}\n$$\n\nThis relationship is established within the context of optimal smoothing and interpolation for stochastic processes [S1][S2].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The expression for the optimal smoothing function f_x(s) is not supported by the excerpts.; The specific form of f_x(s) given in the answer is not found in the excerpts.; The relationship between the best linear unbiased predictor and the optimal smoothing function is not explicitly stated in the excerpts.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7248,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "1f8b8327-e7c2-4830-a77a-94348d0f7e83",
+        "question": "Why is the concept of matching classes important in category theory?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "This is not reported in the retrieved context. \n\nThe excerpts cover topics related to $\\mathcal{N}$-(pre)adhesive morphisms and the properties of $\\mathcal{M}, \\mathcal{N}$-adhesive categories, but do not specifically address the importance of matching classes in category theory.",
+        "answer_kind": "rag",
+        "faithfulness": 0.5,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.8333,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "32d28ebc-4725-4176-8de6-d04f83aa790d",
+        "question": "How do Large Language Models (LLMs) enhance batch data analytics?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Large Language Models (LLMs) enhance batch data analytics by enabling users to perform a wide range of natural language tasks, such as classification, entity extraction, and translation, over large datasets. They are integrated into analytics platforms, allowing for complex analytical tasks through SQL APIs and DataFrame libraries. This integration facilitates the execution of queries that invoke LLMs to analyze data, such as determining the effectiveness of customer service responses in support tickets [S1][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9177,
+        "context_precision": null,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "aef516d0-ea1b-4873-b478-ca2b1b8e3b76",
+        "question": "Can subjective beliefs replace objective stochastic processes in this approach?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, subjective beliefs can serve as a substitute for objective stochastic processes in this approach. The paper discusses how beliefs over infinite exchangeable random partitions can be captured by a mixture of distributions, which reflects subjective beliefs rather than relying on objective probabilities. This is emphasized in the context of decision-making, where the decision maker faces uncertainty about the distribution but is able to form beliefs about the occurrence of novelty, even when the underlying probability process is unknown [S1][S4].",
+        "answer_kind": "rag",
+        "faithfulness": 0.8571,
+        "answer_relevancy": 0.9286,
+        "context_precision": 0.8042,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "02205406-1428-4f9d-93f0-360c574805b7",
+        "question": "How do the concepts of Deligne's conjecture extend to quantum analogs within mathematical categories?",
+        "source": "text-table-image",
+        "type": "abstractive",
+        "answer": "Deligne's conjecture extends to quantum analogs through the formulation of quantum exceptional conjectures, particularly in the context of ribbon categories. The paper introduces a trivalent ribbon category denoted as \\(\\mathrm{QExc}\\), which is proposed to be a quantum deformation of the classical exceptional series. This involves defining skein relations that deform classical relations such as the Jacobi relation and the exceptional relation, as well as establishing a correspondence between classical and quantum conjectures [S2][S3].\n\nSpecifically, the quantum version of Deligne's conjecture posits the existence of a ring \\(R\\) and a corresponding trivalent ribbon category \\(\\mathrm{QExc}_{R, v, w}^{\\text{Del}}\\). This category is characterized by objects that are non-negative integers and morphism spaces that are finitely-generated \\(R\\)-modules. A ribbon functor, Qeval, is also defined to relate this quantum category to the classical one, ensuring that it is identity on objects and surjective on morphisms [S3].\n\nFurthermore, the paper discusses the implications of these conjectures, noting that if Conjecture 1.8 holds for the classical exceptional series, it would imply the validity of the quantum version for specific formal Laurent series [S3]. The exploration of quantum specialization and semisimplicity in certain dense subsets of \\(\\mathbb{C}^2\\) further illustrates the relationship between classical and quantum frameworks [S1][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8795,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "ecb5322e-468e-4ca1-bcec-57e4404e41af",
+        "question": "Do existing methods for AQA explore audio information in videos?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Existing methods for audio question answering (AQA) do not explore audio information in videos; they focus only on visual information. The context mentions that previous works have ignored audio information, which is considered an important cue for assessing action quality [S1][S3].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Existing methods for audio question answering (AQA) do not explore audio information in videos; they focus only on visual information.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.663,
+        "context_precision": 0.8042,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "337aeef5-3269-4ba3-b4db-014e98bb65f5",
+        "question": "What is the relationship between nitrogen oxides and tropospheric ozone in environmental studies?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "**1.** The relationship between nitrogen oxides and tropospheric ozone is inferred by considering their average values during summer 2019 in three Italian regions, namely Lazio, Abruzzo, and Molise. The model used to analyze this relationship includes the logarithm of nitrogen oxides concentrations as one of the covariates affecting the logarithm of ozone concentrations [S1][S2].\n\n**2.** Nitrogen oxides play a crucial role in the formation of tropospheric ozone as they are not directly emitted but rather form ozone through chemical reactions with volatile organic compounds (VOCs) in the presence of sunlight and high temperatures [S2].",
+        "answer_kind": "rag",
+        "faithfulness": 0.8571,
+        "answer_relevancy": 0.8424,
+        "context_precision": 1.0,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "58266700-b97a-49f0-a8fb-96ded6e11a19",
+        "question": "How did the government announce each year's admission policy?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "That's outside what I can help with. I answer questions about 50 arXiv research papers (mainly computer science, mathematics, quantitative finance, economics), and every answer comes with citations to the exact paper and section.\n\nFor example: *\"What problem does this method solve and how is it evaluated?\"* or *\"Which baseline did the proposed approach outperform, and by how much?\"*",
+        "answer_kind": "out_of_scope",
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "010ee499-211a-4195-a32b-15ce468c3588",
+        "question": "For which data-generating process does the conditional confidence interval have a coverage frequency different from that of the conventional confidence interval?",
+        "source": "text-table",
+        "type": "abstractive",
+        "answer": "The conditional confidence interval has a coverage frequency different from that of the conventional confidence interval for the data-generating process \\( p=(.25,.25,.25,.25,.25,.25)^{\\prime} \\), where the coverage frequency for the conventional CI is 0.85 and for the conditional CI is 0.95 [S3].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The conditional confidence interval has a coverage frequency different from that of the conventional confidence interval for the data-genera). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8004,
+        "context_precision": 0.3333,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "c78b0dd7-2e8e-4f61-a9fb-4e49af5c9d80",
+        "question": "What role does wind direction play in sailboat maneuvering strategies?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "Wind direction plays a critical role in sailboat maneuvering strategies, particularly in determining when to tack. Tacking is the maneuver where a sailboat changes course to sail against the wind, and the timing of this maneuver is crucial because it can slow down the yacht. The wind direction is modeled as fluctuating, and these fluctuations can be represented as a Brownian motion with fixed volatility. The optimization of the sailboat's trajectory, influenced by these wind fluctuations, is framed as a stochastic control problem aimed at minimizing the time to reach an upwind buoy [S4][S5]. \n\nIn a constant wind scenario, the boat can follow a zigzag path to reach the target, while in a fluctuating wind, the boat's trajectory must adapt to changing wind directions, which affects the feasible sailing directions on port and starboard tack [S1][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9581,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "0c1eac54-193d-4460-a6db-69539b6bf862",
+        "question": "What property does the random serial dictatorship allocation mechanism fail to satisfy?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "The random serial dictatorship allocation mechanism satisfies all the properties but unambiguous efficiency [S2].",
+        "answer_kind": "rag",
+        "faithfulness": 0.5,
+        "answer_relevancy": 0.9351,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "b4a9e0ff-60ec-4e0a-9ccb-9e74ddd15f99",
+        "question": "What role does invariance play in Condorcet-based voting systems?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "Invariance, specifically ordinal margin invariance, plays a significant role in Condorcet-based voting systems by ensuring that a small amount of noise in voter preferences is unlikely to change the ordinal margin graph, thus maintaining the robustness of the selection of winners. However, the theorem presented indicates that if a voting method satisfies positive involvement, the Condorcet winner and loser criteria, resolvability, and ordinal margin invariance, then such a method cannot exist. This suggests that while ordinal margin invariance is desirable for robustness, it must be dropped to satisfy the other criteria in Condorcet-based voting systems [S2][S4][S5].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8201,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "15fb0df5-f258-4d2b-86cf-e9de4c2de5b4",
+        "question": "In what ways can theoretical models explore belief updating with respect to known versus unknown objects?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "**1. Belief Updating with Known Objects** \nTheoretical models can explore belief updating with respect to known objects by characterizing subjective expected utility theory in the context of sampling known objects. This is exemplified by Wakker (2002), who discusses Carnap's prediction rule, which is a method for making predictions based on known objects. The two-parameter model characterized in the paper can be viewed as a generalization of this prediction rule, allowing for more precise updates in sampling problems involving known objects, while also satisfying \"reverse\" Bayesianism under certain models like the De Morgan model, the Ewens' one-parameter model, and the two-parameter model by Pitman and Zabell [S1][S2][S3].\n\n**2. Belief Updating with Unknown Objects** \nTheoretical models can explore belief updating with respect to unknown objects by considering a decision maker who is initially unaware of the specific objects to be sampled. In this context, the decision maker can form beliefs about the occurrence of novelty and the frequencies of yet-to-be-known objects. Conditional on any sampled objects, they can also form beliefs about whether the next object will be novel or one of the previously sampled objects. This approach relates to \"reverse\" Bayesianism and involves the use of exchangeable random partitions, which can accommodate beliefs about unknown objects and their sampling [S3][S4].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Wakker (2002) discusses Carnap's prediction rule; The two-parameter model characterized in the paper can be viewed as a generalization of this prediction rule; The De Morgan model, the Ewens' one-parameter model, and the two-parameter model by Pitman and Zabell are mentioned in the context of revers). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9336,
+        "context_precision": 1.0,
+        "context_recall": 0.0
+      },
+      {
+        "query_id": "257ec56e-d63d-45b6-9a17-3e598a98a916",
+        "question": "Why do singularities form in viscosity solutions of HJB equations?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "The formation of singularities in viscosity solutions of Hamilton-Jacobi-Bellman (HJB) equations can occur due to several reasons:\n\n1. **Finite Time Singularities**: It is well-known that the unique viscosity solution \\( u \\) can develop singularities in finite time, even when the Hamiltonian \\( H \\) and the function \\( G \\) are smooth. This phenomenon is documented in the literature, with examples showing that for purely quadratic Hamiltonians \\( H(x, p) = \\frac{1}{2}|p|^{2} \\), a singularity of \\( u \\) must form in finite time for any non-convex (and non-constant) \\( G \\) [S1].\n\n2. **Non-Uniqueness of Optimal Trajectories**: Singularity formation is equivalent to the non-uniqueness of optimal trajectories in the variational problem associated with the HJB equation. If one can ensure the uniqueness of optimizers in this variational problem, it leads to the differentiability of the value function and the existence of a unique classical solution [S1].\n\n3. **Failure of Semi-Convexity Estimates**: The failure of semi-convexity estimates in finite time is a particular source of the failure of global well-posedness in the class \\( C_{loc}^{1,1} \\). This is evidenced by specific situations of singularity formations that illustrate how these estimates do not hold [S5]. \n\nThese factors contribute to the complexities and challenges in establishing global well-posedness for HJB equations.\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Non-Uniqueness of Optimal Trajectories is equivalent to singularity formation; Uniqueness of optimizers leads to differentiability of the value function; Failure of semi-convexity estimates is a source of failure of global well-posedness). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 0.9,
+        "answer_relevancy": 0.8448,
+        "context_precision": 0.7,
+        "context_recall": 0.5
+      },
+      {
+        "query_id": "ce80e7b0-d3fc-4ac1-a386-6d1c9e8705bf",
+        "question": "What are some properties that define a semi-metric used in max-sum matchings?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "A semi-metric function satisfies all the properties of a metric function except the triangle inequality. In the context of max-sum matchings, the semi-metric function \\( d: \\mathbb{R}^{2} \\times \\mathbb{R}^{2} \\rightarrow \\mathbb{R}_{\\geq 0} \\) is used to maximize the sum of distances between matched points [S2].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8729,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "700551de-c288-4553-88e7-4db17c38527f",
+        "question": "Does neglecting changes in kinetic energy become more justifiable for longer ascents?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "Yes, neglecting changes in kinetic energy becomes more justifiable for longer ascents. This is because the power associated with changes in kinetic energy, denoted as \\( P_{K} \\), is inversely proportional to the ascent time. Therefore, as the ascent time increases, the impact of changes in kinetic energy diminishes, making it reasonable to neglect them [S1][S2].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9378,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "79c6c304-21af-4008-9399-e6d453753dce",
+        "question": "How does the GGR algorithm reduce the number of recursive calls compared to iterating through all possible distinct values?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "The GGR algorithm reduces the number of recursive calls by selecting the value \\( b_{v} \\) with the maximum prefix hit count at each recursion step, rather than iterating through all possible distinct values in the entire table. This approach significantly decreases the number of recursive calls, with the maximum depth of recursion being \\( O(\\min (n, m)) \\), as the algorithm reduces the dimensions of the table at each recursive step [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (maximum depth of recursion being O(min(n, m))). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8194,
+        "context_precision": 0.95,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "6f441cc1-412c-44ae-aee6-c88cde6614f3",
+        "question": "What happens to outgoing transitions from the final state in an rDFA for a suffix-free language?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "In a right-deterministic finite automaton (rDFA) for a suffix-free language, all outgoing transitions from the final state lead to a sink state. This means that once the automaton reaches the final state, it cannot transition to any other state that would allow for further valid runs in the language, as no final state can be reached from a final state by a nonempty run [S2][S3].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8256,
+        "context_precision": 0.6389,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "ec7781bd-2b97-4ae7-ad4c-4c438dd07555",
+        "question": "Is there more \"room\" at the boundaries in hyperbolic or Euclidean spaces for large radii?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "There is more \"room\" at the boundaries in hyperbolic space for large radii. The volume of an $n$-ball in hyperbolic space grows exponentially, which allows for more space at the boundaries compared to Euclidean space, where the volume grows polynomially. Consequently, hyperbolic volumes dominate exponentially for large radii, providing more \"room\" at the boundaries [S1].",
+        "answer_kind": "rag",
+        "faithfulness": null,
+        "answer_relevancy": 0.6876,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "0a8c5eaa-1fef-450d-8499-5c7a9148e8de",
+        "question": "What role do collinear arrangements play in determining common intersections among disks?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "In the context of maximum-sum matchings of bichromatic points, collinear arrangements of points play a significant role in determining common intersections among disks. Specifically, when three points \\(a\\), \\(b\\), and \\(c\\) are collinear, the intersection of the strips \\(S(a, b)\\), \\(S(b, c)\\), and \\(S(c, a)\\) is analyzed. The intersection must be a line through a point \\(b'\\) that is perpendicular to the line segment \\(\\ell(ac)\\). This geometric configuration leads to specific conditions under which the common intersection of the disks in the matching can be established, as shown in the proof provided in the excerpts [S2][S4].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5957,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "1b4d4eeb-b2d9-4e5b-b3e5-fd52badb184c",
+        "question": "Under what condition does a complex balanced CRN mimic an irreversible CRN with absolute concentration robustness?",
+        "source": "text",
+        "type": "extractive",
+        "answer": "A complex balanced chemical reaction network (CRN) can mimic the behavior of an irreversible CRN with absolute concentration robustness when the ratio \\( r \\) is significantly greater than 0, specifically when the following condition holds:\n\n\\[\n\\left(x_{2}+x_{5}\\right)\\left(x_{1}+x_{3}\\right)+x_{1}\\left(x_{3}+3 x_{5}\\right)+x_{2} x_{5} \\gg x_{4}\\left(x_{1}+x_{3}+x_{5}\\right)\n\\]\n\nThis situation occurs, for example, when \\( x_{1} \\approx x_{2} \\approx x_{3} \\approx x_{5} \\gg x_{4} \\), or \\( x_{2} \\gg x_{1} \\approx x_{4} \\approx x_{3} \\approx x_{5} \\), among other similar configurations [S5].",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8819,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "12c98955-b6c0-4014-a467-8f39f6922d40",
+        "question": "Does HyperVQ form more compact clusters than KmeansVQ?",
+        "source": "text-table-image",
+        "type": "extractive",
+        "answer": "Yes, HyperVQ forms more compact clusters than KmeansVQ. The clusters of the HyperVQVAE are described as more compact and disentangled compared to those of the KmeansVQ model, which is attributed to the hyperbolic MLR formulation that encourages embeddings to be highly localized within the regions enclosed by the decision hyperplanes [S2].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (HyperVQ forms more compact clusters than KmeansVQ.; The clusters of the HyperVQVAE are described as more compact and disentangled compared to those of the KmeansVQ model.; This is attributed to the hyperbolic MLR formulation.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9239,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "dba75be5-7ba0-4918-bfec-3cdff2abaee3",
+        "question": "How do BASE-T and ADA-T models differ in their prediction performance for peptide sources?",
+        "source": "text-image",
+        "type": "abstractive",
+        "answer": "The BASE-T and ADA-T models differ in their prediction performance for peptide sources in the following ways:\n\n- For BASE-T, the model shows a tendency to learn shortcuts based on the label imbalance within different peptide sources. Specifically, Human betaherpesvirus 6B peptides (mostly positives) tend to receive higher prediction scores than Vaccinia virus peptides (mostly negatives) for positive labels, while the opposite is true for negative labels, indicating a bias towards the majority class within each source [S1][S3].\n\n- In contrast, ADA-T, which applies adversarial domain adaptation, aims to reduce shortcut learning based on peptide sources. While it corrects the bias for T-cell response positives, it results in Vaccinia virus peptides receiving even higher prediction scores than Human betaherpesvirus 6B peptides. For T-cell response negatives, the prediction score distributions for the two sources become well aligned, indicating that no source shortcuts are used. However, this overcorrection leads to a slight drop in overall prediction accuracy for ADA-T, as it increases correct predictions in minority classes at the expense of additional errors in majority classes [S1][S3].\n\nOverall, ADA-T demonstrates improved alignment of prediction scores across sources for negatives but may sacrifice some accuracy for positives compared to BASE-T.\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (ADA-T results in Vaccinia virus peptides receiving even higher prediction scores than Human betaherpesvirus 6B peptides for positives.; ADA-T increases correct predictions in minority classes at the expense of additional errors in majority classes.; ADA-T demonstrates improved alignment of prediction scores across sources for negatives.). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9924,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      },
+      {
+        "query_id": "adda272d-9499-4dc2-a1e0-68969915b916",
+        "question": "What institutional factors were investigated to see if they correlated with school admission reforms?",
+        "source": "text",
+        "type": "abstractive",
+        "answer": "The institutional factors investigated to determine their correlation with school admission reforms include:\n\n- Simultaneous reforms in middle schools\n- The total number of applicants\n- Capacities at Schools 1-8\n- The capacity of School 1 relative to the capacities of other schools\n- The number of middle school graduates\n- The national number of applicants\n- The level of competitiveness (measured by the number of entrants divided by the number of applicants)\n- The total number of entrants to Schools 1-8\n- The share of entrants to School 1 in all entrants\n- The probability of unsuccessful applicants retaking the exam in subsequent years\n- The average age of entrants\n- Government expenditure on higher education\n\nThese factors were analyzed to confirm that centralization periods were not correlated with time-series changes in these variables [S1][S2].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (The number of middle school graduates; The national number of applicants; The level of competitiveness (measured by the number of entrants divided by the number of applicants)). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9829,
+        "context_precision": 0.8042,
+        "context_recall": 1.0
+      }
+    ]
+  },
+  "refusal": {
+    "refusal_accuracy": 0.95,
+    "n_questions": 20,
+    "n_correctly_declined": 19,
+    "hallucinations": [
+      {
+        "query_id": "85f3874f-4042-4c9f-b4eb-bd8f3db21ba3",
+        "question": "How do arbitrage opportunities arise with liquidity tokens?",
+        "answer": "Arbitrage opportunities arise with liquidity tokens in the context of automated market makers (AMMs) when there are price differences between the AMM and the fundamental price of the asset. Arbitrageurs monitor these price discrepancies and exploit them for profit. The expected profit to arbitrageurs per unit time, denoted as $\\operatorname{ARB} \\_ \\operatorname{PROFIT}(f, L)$, is influenced by the fee $f$ and the liquidity $L$ in the pool. Specifically, arbitrage profits are assumed to scale linearly with the pool value or liquidity, and they decrease as the fee increases, since higher fees act as a friction that limits arbitrage activity [S2]. \n\nAdditionally, the design of the auction-managed AMM (am-AMM) allows the current highest bidder (the manager) to set the swap fee dynamically, which can create small arbitrage opportunities each block by trading on the pool with effectively zero fee [S1]. This incentivizes the manager to optimize the fee to maximize revenue from uninformed flow, further contributing to the potential for arbitrage [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Arbitrage profits are assumed to scale linearly with the pool value or liquidity; the manager to set the swap fee dynamically; create small arbitrage opportunities each block by trading on the pool with effectively zero fee). Please verify against the cited sources.*",
+        "answer_kind": "rag",
+        "unindexed_doc_id": "2409.11339v2",
+        "n_cited_sources": 2,
+        "grounded": false,
+        "correctly_declined": false
+      }
+    ]
+  },
+  "refusal_details": [
+    {
+      "query_id": "42b4a956-45db-4407-90d0-c93346290409",
+      "question": "Does the selection procedure for determining lags involve a statistical test?",
+      "answer": "This is not reported in the retrieved context. The excerpts discuss issues related to inference for interval-identified parameters and methods for estimating treatment effects in healthcare, but do not mention a selection procedure for determining lags or whether it involves a statistical test.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2405.04904v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "2a70ee21-b70e-4a8f-916e-d3ee5fb08883",
+      "question": "What was the primary significance of foundations in ancient Greece?",
+      "answer": "That's outside what I can help with. I answer questions about 50 arXiv research papers (mainly computer science, mathematics, quantitative finance, economics), and every answer comes with citations to the exact paper and section.\n\nFor example: *\"What problem does this method solve and how is it evaluated?\"* or *\"Which baseline did the proposed approach outperform, and by how much?\"*",
+      "answer_kind": "out_of_scope",
+      "unindexed_doc_id": "2407.02507v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "ed7265d6-dd8f-48e7-a5c2-1f901b89f03d",
+      "question": "Are there any unidentified spectral features in the SC source analysis?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover details about the laser setup, its spectrum, and the effects of the blue light on the lifetime of trapped atoms, but do not mention unidentified spectral features in the source analysis.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2410.11095v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "7c92cc41-8040-4ed1-b95c-5135f43bfe9f",
+      "question": "Is more hedging required when model delta exceeds payoff-based delta at a certain price point?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to pricing Asian options in the Volterra-Heston model, the impact of volatility changes, and option pricing in jump-diffusion models, but do not address hedging requirements or the relationship between model delta and payoff-based delta.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2411.12375v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "46c61a25-3dc5-4aa5-8b2b-66d96b949fe9",
+      "question": "How do airway dimensions change throughout the respiratory tree?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to Bose-Einstein condensates, Bayesian regression models in healthcare, volatility changes in econometrics, and quantum thermodynamics, but do not address airway dimensions or respiratory anatomy.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2408.07618v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "f1d543c9-7749-4b1b-9547-ae3994e52f19",
+      "question": "Can Kohn's theorem be bypassed to couple LLL to a constant electric field, and if so, how?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to coupled controlled stochastic evolution equations in Hilbert space and the quantization of superconducting circuits, but do not address Kohn's theorem or its implications regarding linearized Landau levels and electric fields.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2405.12292v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "12b6c5f0-1061-4e79-b0a3-4ebdccbde1ad",
+      "question": "Does PyraNet improve model performance compared to CodeLlama-7B?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover performance comparisons of various models, including open-source and closed-source LMMs, but do not mention PyraNet or CodeLlama-7B specifically.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2412.06947v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "a961cb1f-4f55-4d9b-b8d7-dd404000fb17",
+      "question": "Why are elastic cross-section calculations important for CO2-ortho H2 collisions?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to the atomic polarizability and measurements in dysprosium Bose-Einstein condensates, but do not address elastic cross-section calculations for carbon dioxide and ortho hydrogen collisions.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2409.04439v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "a4b61f78-bcec-4a1a-a683-a7e77729a19d",
+      "question": "How do different strike prices impact the payoff of exotic derivatives involving VIX?",
+      "answer": "This is not reported in the retrieved context. \n\nThe excerpts cover the pricing of geometric Asian options in the Volterra-Heston model, the effects of roughness on option prices, and the treatment of the forward variance curve in volatility models, but do not specifically address the impact of different strike prices on the payoff of exotic derivatives related to the VIX.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2406.02319v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "52284612-711d-4e5e-8b16-5cceb5113f05",
+      "question": "What is considered the best daily percent-cost liquidity proxy?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to fiscal proxies, withdrawal fees in automated market makers, and the challenges faced by liquidity providers in minimizing losses to arbitrageurs while maximizing fee revenue.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2411.05803v4",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "420ba8ab-f356-45c7-a152-9db76f8b5c32",
+      "question": "Why might an estimator become inefficient when using a homogeneous Poisson point process?",
+      "answer": "This is not reported in the retrieved context. \n\nThe excerpts cover topics related to the Poisson distribution, its assumptions, and the implications of heterogeneity in infection probability models, but do not specifically address the inefficiency of estimators in a homogeneous Poisson point process.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2408.07372v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "6bc2ab72-a7ee-4cf6-a40f-4caf56d1533c",
+      "question": "What does it mean for a foundation to be consistent?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to consistency in statistical estimation, decision-making under uncertainty, and the challenges of experimental validation in scientific research.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2407.02507v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "687d1a3e-e76f-4256-9792-05db56339c81",
+      "question": "What type of problems do Ising machines solve?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to machine learning in voting theory, optimal control in infinite-dimensional spaces, and order execution strategies in finance.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2412.10289v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "6ca24792-0677-4287-a85e-3813d05aafc1",
+      "question": "Why is there a need for an On-Chain Credit Risk Score in DeFi?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to automated market makers, optimal execution strategies, and the effects of forecast updates on manufacturing resource planning, but do not mention on-chain credit risk scores in decentralized finance.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2412.00710v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "f8f2baf4-1b9c-4170-a087-445a4a15e56d",
+      "question": "How do cyclic components influence user behavior in currency networks?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics such as forecast updates in MRP planning, absolute sensitivity in chemical reaction networks, enhancements in heat current in circuit QED, multi-target tracking in dynamic environments, and stability restrictions in volatility changes.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2409.13674v3",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "b65c37d6-1044-428c-8cc8-58c4e31d1cf0",
+      "question": "Why is careful pruning important when incorporating new datasets into VLM training?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover details about datasets used in multimodal models, experimental setups, performance results of various models, and optimization techniques for LLM queries, but do not specifically address the importance of careful pruning when incorporating new datasets into vision-language model training.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2412.04468v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "ab4778ec-f267-4e39-8911-fa49ddc566be",
+      "question": "What is the significance of linking numbers in lattice gauge theories?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to link polynomials, quantum dimensions, and computations of knot invariants, but do not mention linking numbers in lattice gauge theories.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2410.11034v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "85f3874f-4042-4c9f-b4eb-bd8f3db21ba3",
+      "question": "How do arbitrage opportunities arise with liquidity tokens?",
+      "answer": "Arbitrage opportunities arise with liquidity tokens in the context of automated market makers (AMMs) when there are price differences between the AMM and the fundamental price of the asset. Arbitrageurs monitor these price discrepancies and exploit them for profit. The expected profit to arbitrageurs per unit time, denoted as $\\operatorname{ARB} \\_ \\operatorname{PROFIT}(f, L)$, is influenced by the fee $f$ and the liquidity $L$ in the pool. Specifically, arbitrage profits are assumed to scale linearly with the pool value or liquidity, and they decrease as the fee increases, since higher fees act as a friction that limits arbitrage activity [S2]. \n\nAdditionally, the design of the auction-managed AMM (am-AMM) allows the current highest bidder (the manager) to set the swap fee dynamically, which can create small arbitrage opportunities each block by trading on the pool with effectively zero fee [S1]. This incentivizes the manager to optimize the fee to maximize revenue from uninformed flow, further contributing to the potential for arbitrage [S1].\n\n⚠️ *An automatic check found statements that may not be fully supported by the retrieved excerpts (Arbitrage profits are assumed to scale linearly with the pool value or liquidity; the manager to set the swap fee dynamically; create small arbitrage opportunities each block by trading on the pool with effectively zero fee). Please verify against the cited sources.*",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2409.11339v2",
+      "n_cited_sources": 2,
+      "grounded": false,
+      "correctly_declined": false
+    },
+    {
+      "query_id": "755e4742-ec8b-4d95-9143-ed1299d3f377",
+      "question": "How does feature selection impact model performance on ImageNet-1k when using different methods?",
+      "answer": "This is not reported in the retrieved context. \n\nThe excerpts cover experiments on image classification using HyperVQ and its performance on datasets like Cifar100 and ImageNet, as well as the evaluation of different training strategies and fusion methods in multimodal action quality assessment.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2412.10128v2",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    },
+    {
+      "query_id": "e52af033-a5b3-4fee-957c-def24a36a130",
+      "question": "How does the individual craft a deceptive plan for a phishing attack?",
+      "answer": "This is not reported in the retrieved context. The excerpts cover topics related to Bayesian additive regression trees for cost-effectiveness analyses in healthcare and optimal order execution strategies in finance, but do not address phishing attacks or deceptive plans related to them.",
+      "answer_kind": "rag",
+      "unindexed_doc_id": "2407.16205v5",
+      "n_cited_sources": 0,
+      "grounded": null,
+      "correctly_declined": true
+    }
+  ]
+}

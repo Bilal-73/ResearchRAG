@@ -1,0 +1,4 @@
+# ── Optional: NER-based person-name detection for the PII guardrail (PII_BACKEND=presidio) ──
+-r requirements.txt
+presidio-analyzer>=2.2,<3
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

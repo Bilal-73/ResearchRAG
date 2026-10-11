@@ -1,0 +1,16 @@
+# secrets
+.env
+.env.bak
+.env.*.local
+
+# environments / tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+
+# runtime output
+logs/
+data/open_ragbench/
+data/state/
