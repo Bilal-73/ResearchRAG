@@ -1,0 +1,16 @@
+# Normalise line endings in the repository; check out with the platform's default.
+* text=auto eol=lf
+
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.woff2 binary
+
+# Keep the lockfile and generated diagram out of language stats and diffs.
+frontend/package-lock.json linguist-generated=true -diff
+docs/architecture-diagram.html linguist-documentation=true
+backend/docs/*.html linguist-documentation=true

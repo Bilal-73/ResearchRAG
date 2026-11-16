@@ -1,0 +1,32 @@
+# Local infrastructure for Research RAG. From the repository root:
+#   docker compose up -d      start Qdrant + Redis
+#   docker compose down       stop them (data is kept in the named volumes)
+#   docker compose down -v    stop them AND delete the index and cache
+#
+# The backend (port 8000) and frontend (port 5173) run on the host, not in Docker.
+# See docs/PORTS_AND_SERVICES.md.
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: research-rag-qdrant
+    ports:
+      - "6333:6333"   # REST API + dashboard (http://localhost:6333/dashboard) -> backend QDRANT_URL
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: research-rag-redis
+    ports:
+      - "6379:6379"   # embedding / caption cache -> backend REDIS_URL (optional, fails open)
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+  redis_data:

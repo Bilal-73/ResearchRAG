@@ -1,0 +1,19 @@
+# Repository-wide ignores. Each app also has its own .gitignore:
+#   backend/.gitignore   Python env, .env, logs, downloaded corpus, checkpoints
+#   frontend/.gitignore  node_modules, dist, .env.local
+
+# Secrets, anywhere in the tree
+.env
+.env.*
+!.env.example
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.swp
+
+# Local AI-assistant and tooling state
+.claude/
+.archify/
