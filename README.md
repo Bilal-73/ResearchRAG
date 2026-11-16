@@ -12,7 +12,7 @@ npm run dev
 The backend must be running first:
 
 ```bash
-cd ../DiabetesMedicalRAGv2 && .venv\Scripts\python.exe scripts/run_api.py
+cd ../ResearchRAG && .venv\Scripts\python.exe scripts/run_api.py
 ```
 
 Then open http://localhost:5173.
