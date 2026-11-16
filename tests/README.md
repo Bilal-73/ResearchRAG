@@ -4,7 +4,7 @@ Fully offline. Azure and Qdrant are faked; everything else is real — the actua
 the actual guardrails, the actual FastAPI app. That is what the abstract base classes in each
 module buy you.
 
-- **`fakes.py`** — the shared doubles. `FakeOpenAI` routes by system-prompt marker and each
+- **`fakes.py`** — the shared doubles. `FakeChatModel` routes by system-prompt marker and each
   response is overridable per test, so you can script a grader outage, a hallucinated citation or
   an uncited answer without touching the code under test. `Harness` wires a complete agent.
 - **`test_agent_graph.py`** — end-to-end agent behaviour: routing, memory, follow-ups, corrective

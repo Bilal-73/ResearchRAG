@@ -12,6 +12,11 @@ rewriting, HyDE, question planning, corrective retrieval, memory) wrapped in **g
 redaction, prompt-injection defence, dual-use screening, crisis handling, citation enforcement,
 fabricated-reference stripping, groundedness checking).
 
+The whole data path is **one LangChain stack**: LangGraph orchestrates the agent, and every step inside
+it is a LangChain primitive — `AzureChatOpenAI` models, `ChatPromptTemplate` prompts run as LCEL
+chains, cached `Embeddings`, a Qdrant `VectorStore`, `BaseRetriever` retrievers and a
+`BaseDocumentCompressor` reranker exchanging `Document`s. See `docs/SYSTEM_GUIDE.md` §5 for the map.
+
 ---
 
 ## Why this corpus
@@ -41,6 +46,7 @@ is traceable to a section; anything the corpus does not support is refused rathe
 | Area | Before | Now |
 |---|---|---|
 | Interface | Streamlit app | **FastAPI** with OpenAPI docs, typed schemas, explicit status codes |
+| Orchestration | LangGraph over raw `openai` / `qdrant-client` calls | **LangGraph + LangChain**: LCEL chains, `VectorStore`, `BaseRetriever`, `Document`s throughout |
 | Corpus | 10 curated medical PDFs (Docling + OCR) | up to 1,000 arXiv papers from pre-parsed benchmark JSON (no PDF parsing) |
 | Chunking | Docling `HybridChunker` | section-aware chunker that preserves `section_id` and splits out tables/figures |
 | Ground truth | LLM-generated from the same chunks | the benchmark's own queries, qrels and reference answers |
@@ -309,11 +315,11 @@ research-rag/
 │   ├── api/            FastAPI app, routers (chat, context, corpus, meta), schemas, dependencies
 │   ├── models/         Chunk, RAGResponse, SourceCitation
 │   ├── ingestion/      benchmark corpus reader, section-aware chunker, resumable pipeline
-│   ├── embeddings/     Azure OpenAI embedder + hashing sparse encoder
-│   ├── vectorstore/    Qdrant collection + hybrid (dense + sparse) search
-│   ├── retrieval/      multi-query hybrid search, HyDE, RRF fusion, cross-encoder reranker
-│   ├── generation/     citation-enforcing prompt + answer generator
-│   ├── llm/            resilient Azure chat client (retry/backoff, concurrency cap)
+│   ├── embeddings/     cached LangChain Embeddings + hashing sparse encoder
+│   ├── vectorstore/    Qdrant as a LangChain VectorStore, hybrid (dense + sparse) search
+│   ├── retrieval/      LangChain retrievers: multi-query hybrid, HyDE, RRF fusion, cross-encoder reranker
+│   ├── generation/     citation-enforcing ChatPromptTemplate + answer chain
+│   ├── llm/            LangChain model factories + resilient client that builds LCEL chains
 │   ├── agents/         LangGraph graph: state, intent, planner, nodes, memory, routing
 │   ├── guardrails/     PII, injection, rate limit, safety, output checks, registry
 │   ├── corpus/         live view of what is indexed
@@ -361,8 +367,10 @@ pip install -r requirements-dev.txt
 python -m pytest tests -q
 ```
 
-Fully offline — Azure and Qdrant are faked, everything else is real: the actual LangGraph graph,
-the actual guardrails, the actual FastAPI app via `TestClient`.
+Fully offline — Azure and Qdrant are faked (as LangChain `BaseChatModel` / `Embeddings` /
+`VectorStore` fakes, plus the real Qdrant store against qdrant-client's in-memory mode), everything
+else is real: the actual LCEL chains, the actual LangGraph graph, the actual guardrails, the actual
+FastAPI app via `TestClient`.
 
 ---
 
@@ -384,7 +392,7 @@ cheaper by reusing embeddings for unchanged text.
 ## Known limitations
 
 - **Sparse vectors use a hashing encoder**, not BM25 over the corpus, so lexical matching is
-  approximate. Swapping in SPLADE or a real BM25 index is a change to `AzureEmbedder.sparse_encode`
+  approximate. Swapping in SPLADE or a real BM25 index is a change to `HashingSparseEncoder.encode`
   and nothing else.
 - **Figure captions default to the paper's own caption text.** `CAPTION_FIGURES=true` adds a VLM
   pass that reads axes and trends off the image, which should raise text-image recall — worth

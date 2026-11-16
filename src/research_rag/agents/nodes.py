@@ -26,6 +26,8 @@ from research_rag.generation import AnswerGenerator
 from research_rag.guardrails import (
     InputGuardrails, OutputGuardrails, PromptInjectionGuard, event, is_refusal,
 )
+from langchain_core.documents import Document
+
 from research_rag.llm import LLMClient, LLMError
 from research_rag.models import Chunk
 from research_rag.retrieval import AdvancedRetriever, BaseReranker, HyDEGenerator, NoOpReranker, QueryRewriter, QueryVariant
@@ -33,7 +35,7 @@ from . import responses
 from .intent import IntentClassifier
 from .planner import QuestionPlanner
 from .memory import append_turn, fold_old_turns, format_recent_turns
-from .prompts import CHITCHAT_SYSTEM, GRADER_SYSTEM, GROUNDEDNESS_SYSTEM
+from .prompts import CHITCHAT_PROMPT, GRADER_PROMPT, GROUNDEDNESS_PROMPT
 
 logger = logging.getLogger(__name__)
 
@@ -75,6 +77,13 @@ class AgentNodes:
         self.generator = generator
         self.corpus = corpus
         self.defaults = defaults     # feature flags + numeric knobs from Settings
+
+        # LCEL chains for the steps that call the LLM directly (the others own theirs)
+        self.chitchat_chain = llm.text_chain(CHITCHAT_PROMPT, purpose="chitchat", temperature=0.3, max_tokens=140)
+        self.grader_chain = llm.json_chain(
+            GRADER_PROMPT, purpose="grade", max_tokens=100,
+            default={"sufficient": True, "reason": "grader unavailable — assuming sufficient"})
+        self.groundedness_chain = llm.json_chain(GROUNDEDNESS_PROMPT, purpose="groundedness", default={}, max_tokens=200)
 
     # ------------------------------------------------------------------ helpers
     def _opt(self, state: dict, key: str):
@@ -131,13 +140,8 @@ class AgentNodes:
     def respond_chitchat(self, state: dict) -> dict:
         t0 = time.monotonic()
         try:
-            answer = self.llm.chat(
-                [
-                    {"role": "system", "content": CHITCHAT_SYSTEM.format(corpus=self.corpus.describe())},
-                    {"role": "user", "content": state["clean_message"]},
-                ],
-                temperature=0.3, max_tokens=140, purpose="chitchat",
-            ).strip()
+            answer = self.chitchat_chain.invoke(
+                {"corpus": self.corpus.describe(), "message": state["clean_message"]}).strip()
         except LLMError:
             answer = ""
         if not answer:
@@ -226,7 +230,7 @@ class AgentNodes:
                 trace.append({"node": "retrieve_plan", "detail": f"FAILED on part {i}: {error}", "seconds": time.monotonic() - t0})
                 return {"answer": responses.RETRIEVAL_ERROR, "answer_kind": "error", "store_turn": False,
                         "error": str(error), "trace": trace}
-            candidates, ev = self._drop_poisoned(result.chunks)
+            candidates, ev = self._drop_poisoned(result.documents)
             events += ev
             n_cands += len(candidates)
             used += [f"q{i}:{v}" for v in result.variants_used]
@@ -240,20 +244,22 @@ class AgentNodes:
                 if rank < len(part) and part[rank].id not in seen and len(merged) < cap:
                     seen.add(part[rank].id)
                     merged.append(part[rank])
-        coverage = [{"question": sub, "sources": [f"S{merged.index(c) + 1}" for c in part if c in merged]}
+        position = {doc.id: i for i, doc in enumerate(merged, start=1)}
+        coverage = [{"question": sub, "sources": [f"S{position[d.id]}" for d in part if d.id in position]}
                     for sub, part in zip(subs, per_part)]
-        return {"n_candidates": n_cands, "variants_used": used, "top_chunks": [c.to_dict() for c in merged],
+        return {"n_candidates": n_cands, "variants_used": used, "top_chunks": _to_state(merged),
                 "plan_coverage": coverage, "events": self._events(state, events), "trace": trace}
 
-    def _drop_poisoned(self, chunks: list[Chunk]) -> tuple[list[Chunk], list[dict]]:
+    def _drop_poisoned(self, docs: list[Document]) -> tuple[list[Document], list[dict]]:
         events, safe = [], []
-        for chunk in chunks:
-            scan = self.injection.scan_chunk_text(chunk.text) if self.injection.enabled else None
+        for doc in docs:
+            scan = self.injection.scan_chunk_text(doc.page_content) if self.injection.enabled else None
             if scan and scan.blocked:
                 events.append(event("retrieved_content_scan", "dropped",
-                                    f"{chunk.paper_id} p.{chunk.page_no}: looks like an instruction ({', '.join(scan.families)})"))
+                                    f"{doc.metadata.get('paper_id')} p.{doc.metadata.get('page_no')}: "
+                                    f"looks like an instruction ({', '.join(scan.families)})"))
             else:
-                safe.append(chunk)
+                safe.append(doc)
         return safe, events
 
     def hyde_node(self, state: dict) -> dict:
@@ -282,7 +288,7 @@ class AgentNodes:
                     "error": str(error), "trace": self._step(state, "retrieve", f"FAILED: {error}", t0)}
         t_search = time.monotonic() - t0
 
-        candidates, events = self._drop_poisoned(result.chunks)
+        candidates, events = self._drop_poisoned(result.documents)
 
         t1 = time.monotonic()
         reranker = self.reranker if self._opt(state, "enable_reranker") else self.noop_reranker
@@ -296,7 +302,7 @@ class AgentNodes:
                       "seconds": time.monotonic() - t1})
         return {
             "n_candidates": len(candidates), "variants_used": result.variants_used,
-            "top_chunks": [c.to_dict() for c in top],
+            "top_chunks": _to_state(top),
             "events": self._events(state, events), "trace": trace,
         }
 
@@ -310,12 +316,7 @@ class AgentNodes:
 
         query = state["standalone_query"] or state["clean_message"]
         excerpts = "\n\n".join(f"[{i}] {c['text'][:600]}" for i, c in enumerate(state["top_chunks"], start=1))
-        verdict = self.llm.chat_json(
-            [{"role": "system", "content": GRADER_SYSTEM},
-             {"role": "user", "content": f"Question: {query}\n\nExcerpts:\n{excerpts}"}],
-            purpose="grade", default={"sufficient": True, "reason": "grader unavailable — assuming sufficient"},
-            max_tokens=100,
-        )
+        verdict = self.grader_chain.invoke({"question": query, "excerpts": excerpts})
         ok = bool(verdict.get("sufficient", True))
         reason = str(verdict.get("reason", ""))[:160]
         retries_left = state.get("retry_count", 0) < self.defaults["max_retrieval_retries"]
@@ -407,11 +408,7 @@ class AgentNodes:
 
     def _check_groundedness(self, answer: str, top_chunks: list[dict]) -> tuple[bool | None, list[str]]:
         excerpts = "\n\n".join(f"[S{i}] {c['text'][:900]}" for i, c in enumerate(top_chunks, start=1))
-        verdict = self.llm.chat_json(
-            [{"role": "system", "content": GROUNDEDNESS_SYSTEM},
-             {"role": "user", "content": f"Excerpts:\n{excerpts}\n\nAnswer to verify:\n{answer}"}],
-            purpose="groundedness", default={}, max_tokens=200,
-        )
+        verdict = self.groundedness_chain.invoke({"excerpts": excerpts, "answer": answer})
         if "grounded" not in verdict:
             return None, []       # checker unavailable: report "not checked" rather than pretending it passed
         claims = [str(c)[:140] for c in (verdict.get("unsupported_claims") or [])][:3]
@@ -460,3 +457,8 @@ class AgentNodes:
     @staticmethod
     def route_after_grade(state: dict) -> str:
         return "rewrite_query" if state.get("next_action") == "retry" else "generate"
+
+
+def _to_state(docs: list[Document]) -> list[dict]:
+    """Documents -> JSON-safe chunk dicts for the LangGraph state (keeps checkpoints serializable)."""
+    return [Chunk.from_document(doc).to_dict() for doc in docs]

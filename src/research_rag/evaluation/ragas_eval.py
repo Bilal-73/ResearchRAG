@@ -48,25 +48,16 @@ def build_ragas_models(settings=None):
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", DeprecationWarning)
-        from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
         from ragas.embeddings import LangchainEmbeddingsWrapper
         from ragas.llms import LangchainLLMWrapper
 
+        from research_rag.llm import build_chat_model, build_embeddings
+
         settings = settings or get_settings()
         logger.info(f"RAGAS judge LLM -> Azure deployment={settings.azure_openai_chat_deployment}")
-        judge_llm = AzureChatOpenAI(
-            openai_api_version=settings.azure_openai_chat_api_version,
-            azure_endpoint=settings.azure_openai_chat_endpoint,
-            azure_deployment=settings.azure_openai_chat_deployment,
-            api_key=settings.azure_openai_chat_api_key,
-            validate_base_url=False,
-        )
-        judge_embeddings = AzureOpenAIEmbeddings(
-            openai_api_version=settings.azure_openai_embedding_api_version,
-            azure_endpoint=settings.azure_openai_embedding_endpoint,
-            azure_deployment=settings.azure_openai_embedding_deployment,
-            api_key=settings.azure_openai_embedding_api_key,
-        )
+        # Same factories as the agent; RAGAS drives the model itself, so let the SDK retry.
+        judge_llm = build_chat_model(settings, max_retries=2)
+        judge_embeddings = build_embeddings(settings)
         return LangchainLLMWrapper(judge_llm), LangchainEmbeddingsWrapper(judge_embeddings)
 
 

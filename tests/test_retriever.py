@@ -1,48 +1,38 @@
-from research_rag.models import Chunk, ChunkType
+from langchain_core.documents import Document
+from langchain_core.retrievers import BaseRetriever
+
 from research_rag.retrieval import HybridRetriever
 
 
-class FakeEmbedder:
-    def embed(self, text):
-        return [0.1, 0.2, 0.3]
-
-    def sparse_encode(self, text):
-        return {"indices": [1, 2], "values": [1.0, 1.0]}
-
-
 class FakeVectorStore:
-    def __init__(self, chunks_to_return):
-        self._chunks_to_return = chunks_to_return
-        self.last_filters = "NOT_CALLED"
+    def __init__(self, docs_to_return):
+        self._docs_to_return = docs_to_return
+        self.last_kwargs = "NOT_CALLED"
 
-    def hybrid_search(self, dense_vector, sparse_vector, limit=20, filters=None):
-        self.last_filters = filters
-        return self._chunks_to_return[:limit]
+    def similarity_search(self, query, k=4, **kwargs):
+        self.last_kwargs = kwargs
+        return self._docs_to_return[:k]
 
 
-def _make_chunk(paper_id):
-    return Chunk(
-        id=f"{paper_id}-1", text="some text", chunk_type=ChunkType.TEXT,
-        paper_id=paper_id, section="Results", page_no=3,
-    )
+def _make_doc(paper_id):
+    return Document(id=f"{paper_id}-1", page_content="some text",
+                    metadata={"chunk_type": "text", "paper_id": paper_id, "section": "Results", "page_no": 3})
 
 
 def test_retrieve_returns_vector_store_results():
-    chunks = [_make_chunk("PMC1"), _make_chunk("PMC2")]
-    vector_store = FakeVectorStore(chunks)
-    retriever = HybridRetriever(FakeEmbedder(), vector_store)
+    docs = [_make_doc("PMC1"), _make_doc("PMC2")]
+    retriever = HybridRetriever(vector_store=FakeVectorStore(docs))
 
-    results = retriever.retrieve("what was the HbA1c change?", top_k=2)
-
-    assert results == chunks
+    assert isinstance(retriever, BaseRetriever)
+    assert retriever.invoke("what was the HbA1c change?", k=2) == docs
 
 
 def test_retrieve_never_passes_a_user_supplied_filter():
     """System decides relevance; there is no parameter here for the caller to
     inject a paper_id filter."""
-    vector_store = FakeVectorStore([_make_chunk("PMC1")])
-    retriever = HybridRetriever(FakeEmbedder(), vector_store)
+    vector_store = FakeVectorStore([_make_doc("PMC1")])
+    retriever = HybridRetriever(vector_store=vector_store, k=5)
 
-    retriever.retrieve("any question", top_k=5)
+    retriever.invoke("any question")
 
-    assert vector_store.last_filters is None
+    assert vector_store.last_kwargs == {}

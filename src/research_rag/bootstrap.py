@@ -1,8 +1,10 @@
 """Composition root: builds every object graph the app uses, from Settings.
 
 This is the ONE place implementations are chosen, so swapping a component
-(a different vector store, reranker or embedder) is a change here and nowhere
-else. The API, the CLI scripts and the evaluation harness all call into it, so
+(a different vector store, reranker or embedding model) is a change here and
+nowhere else. Every component is a LangChain primitive — chat model,
+``Embeddings``, ``VectorStore``, ``BaseRetriever``, ``BaseDocumentCompressor`` —
+composed into LCEL chains and orchestrated by the LangGraph agent. The API, the CLI scripts and the evaluation harness all call into it, so
 they are guaranteed to be running the same system.
 """
 from __future__ import annotations
@@ -15,16 +17,16 @@ from config.settings import get_settings
 from research_rag.agents import AgentNodes, IntentClassifier, QuestionPlanner, ResearchRAGAgent, build_checkpointer
 from research_rag.caching import RedisCache
 from research_rag.corpus import CorpusInfo
-from research_rag.embeddings import AzureEmbedder
+from research_rag.embeddings import CachedEmbeddings, HashingSparseEncoder
 from research_rag.generation import AnswerGenerator, CitationPromptBuilder
 from research_rag.guardrails import (
     Canary, DualUseDetector, GuardrailRegistry, InputGuardrails, OutputGuardrails, PIIGuard,
     PromptInjectionGuard, SelfHarmDetector, build_rate_limiter,
 )
-from research_rag.llm import LLMClient
+from research_rag.llm import LLMClient, build_chat_model, build_embeddings
 from research_rag.rag_system import RAGSystem
 from research_rag.retrieval import AdvancedRetriever, CrossEncoderReranker, HyDEGenerator, QueryRewriter
-from research_rag.vectorstore import QdrantVectorStore
+from research_rag.vectorstore import QdrantHybridVectorStore
 
 logger = logging.getLogger(__name__)
 
@@ -40,13 +42,9 @@ def _build_cache(settings):
 
 def _build_llm(settings) -> LLMClient:
     return LLMClient(
-        endpoint=settings.azure_openai_chat_endpoint,
-        api_key=settings.azure_openai_chat_api_key,
-        api_version=settings.azure_openai_chat_api_version,
-        deployment=settings.azure_openai_chat_deployment,
+        build_chat_model(settings),
         max_retries=settings.llm_max_retries,
         max_concurrency=settings.llm_max_concurrency,
-        timeout=settings.llm_timeout_seconds,
     )
 
 
@@ -56,41 +54,41 @@ def _resolve(path: str | Path) -> Path:
 
 
 def build_index_components(settings=None) -> dict:
-    """Embedder + vector store + corpus view. Everything ingestion needs and nothing more —
+    """Embeddings + vector store + corpus view. Everything ingestion needs and nothing more —
     notably NOT the cross-encoder, which takes seconds to load and is irrelevant to indexing."""
     settings = settings or get_settings()
     cache = _build_cache(settings)
-    embedder = AzureEmbedder(
-        endpoint=settings.azure_openai_embedding_endpoint,
-        api_key=settings.azure_openai_embedding_api_key,
-        api_version=settings.azure_openai_embedding_api_version,
-        deployment=settings.azure_openai_embedding_deployment,
-        cache=cache,
+    embeddings = CachedEmbeddings(
+        build_embeddings(settings), cache,
+        namespace=f"embed:{settings.azure_openai_embedding_deployment}",   # same keys as before LangChain
     )
-    vector_store = QdrantVectorStore(
+    vector_store = QdrantHybridVectorStore.connect(
         url=settings.qdrant_url,
         collection_name=settings.qdrant_collection_name,
+        embedding=embeddings,
         api_key=settings.qdrant_api_key,
+        sparse_encoder=HashingSparseEncoder(),
     )
     corpus = CorpusInfo(vector_store, manifest_path=_resolve(settings.corpus_manifest_path))
-    return dict(settings=settings, cache=cache, embedder=embedder, vector_store=vector_store, corpus=corpus)
+    return dict(settings=settings, cache=cache, embeddings=embeddings, vector_store=vector_store, corpus=corpus)
 
 
 def build_query_components(settings=None) -> dict:
     """Everything needed to answer questions (no ingestion machinery)."""
     settings = settings or get_settings()
     c = build_index_components(settings)
-    cache, embedder, vector_store, corpus = c["cache"], c["embedder"], c["vector_store"], c["corpus"]
+    cache, embeddings, vector_store, corpus = c["cache"], c["embeddings"], c["vector_store"], c["corpus"]
     llm = _build_llm(settings)
     canary = Canary()
     rewriter, hyde = QueryRewriter(llm), HyDEGenerator(llm)
     retriever = AdvancedRetriever(
-        embedder, vector_store, rewriter, hyde,
+        vector_store=vector_store, rewriter=rewriter, hyde=hyde,
         use_rewrite=settings.enable_query_rewrite, use_hyde=settings.enable_hyde,
+        k=settings.retrieval_top_k,
     )
-    reranker = CrossEncoderReranker(settings.reranker_model)
+    reranker = CrossEncoderReranker(model_name=settings.reranker_model, top_n=settings.rerank_top_k)
     generator = AnswerGenerator(llm, CitationPromptBuilder(canary), corpus)
-    return dict(settings=settings, cache=cache, embedder=embedder, vector_store=vector_store, llm=llm,
+    return dict(settings=settings, cache=cache, embeddings=embeddings, vector_store=vector_store, llm=llm,
                 corpus=corpus, canary=canary, rewriter=rewriter, hyde=hyde, retriever=retriever,
                 reranker=reranker, generator=generator)
 
@@ -179,7 +177,7 @@ def build_ingestion(settings=None):
         captioner=captioner,
     )
     pipeline = IngestionPipeline(
-        corpus=corpus, chunker=chunker, embedder=c["embedder"], vector_store=c["vector_store"],
+        corpus=corpus, chunker=chunker, vector_store=c["vector_store"],
         manifest_path=_resolve(settings.corpus_manifest_path),
         load_images=settings.caption_figures,
     )

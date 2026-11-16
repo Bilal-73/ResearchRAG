@@ -13,7 +13,7 @@ import re
 from dataclasses import dataclass, field
 
 from research_rag.llm import LLMClient
-from .prompts import PLANNER_SYSTEM
+from .prompts import PLANNER_PROMPT
 
 logger = logging.getLogger(__name__)
 
@@ -42,18 +42,14 @@ def looks_compound(question: str) -> bool:
 
 class QuestionPlanner:
     def __init__(self, llm: LLMClient, max_sub_questions: int = 3):
-        self._llm = llm
+        self._chain = llm.json_chain(PLANNER_PROMPT, purpose="plan", default={}, max_tokens=250)
         self.max_sub_questions = max(1, max_sub_questions)
 
     def plan(self, question: str) -> PlanResult:
         if not looks_compound(question):
             return PlanResult(reason="single question (rule check)")
 
-        raw = self._llm.chat_json(
-            [{"role": "system", "content": PLANNER_SYSTEM.format(max_n=self.max_sub_questions)},
-             {"role": "user", "content": question}],
-            purpose="plan", default={}, max_tokens=250,
-        )
+        raw = self._chain.invoke({"max_n": self.max_sub_questions, "question": question})
         subs, seen = [], set()
         for item in raw.get("sub_questions") or []:
             if not isinstance(item, str):

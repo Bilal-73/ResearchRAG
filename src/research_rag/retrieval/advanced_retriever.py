@@ -1,23 +1,25 @@
 """Multi-query retriever: original + rewritten + alternative + HyDE variants,
-each searched with the existing dense+sparse hybrid search, then fused with RRF.
+each searched with the vector store's dense+sparse hybrid search, then fused with RRF.
 
-The LangGraph agent calls `search_variants()` directly (it runs the rewrite /
-HyDE steps as separate graph nodes so each is visible in the trace). Everything
-else (RAGSystem.ask, the retrieval evaluator) calls plain `retrieve()`, which
-runs the same techniques end to end, so the evaluation scripts measure the
-same retriever the chatbot uses.
+It is a LangChain ``BaseRetriever``. The LangGraph agent calls
+``search_variants()`` directly (it runs the rewrite / HyDE steps as separate
+graph nodes so each is visible in the trace). Everything else (RAGSystem, the
+retrieval evaluator) calls the standard ``invoke(query)``, which runs the same
+techniques end to end, so the evaluation scripts measure the same retriever the
+chatbot uses.
 """
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+from typing import Any
 
-from research_rag.embeddings.base import BaseEmbedder
+from langchain_core.callbacks import CallbackManagerForRetrieverRun
+from langchain_core.documents import Document
+from langchain_core.retrievers import BaseRetriever
+
 from research_rag.models import Chunk
-from research_rag.vectorstore.base import BaseVectorStore
-from .base import BaseRetriever
 from .fusion import rrf_fuse
-from .query_transforms import HyDEGenerator, QueryRewriter
 
 logger = logging.getLogger(__name__)
 
@@ -31,34 +33,28 @@ class QueryVariant:
 
 @dataclass
 class RetrievalResult:
-    chunks: list[Chunk]
+    documents: list[Document]
     variants_used: list[str] = field(default_factory=list)
     hits_per_variant: dict[str, int] = field(default_factory=dict)
 
+    @property
+    def chunks(self) -> list[Chunk]:
+        return [Chunk.from_document(doc) for doc in self.documents]
+
 
 class AdvancedRetriever(BaseRetriever):
-    def __init__(
-        self,
-        embedder: BaseEmbedder,
-        vector_store: BaseVectorStore,
-        rewriter: QueryRewriter | None = None,
-        hyde: HyDEGenerator | None = None,
-        use_rewrite: bool = True,
-        use_hyde: bool = True,
-        hyde_weight: float = 0.8,    # HyDE is speculative text: it may add recall, but shouldn't outvote the real question
-        rrf_k: int = 60,
-    ):
-        self.embedder = embedder
-        self.vector_store = vector_store
-        self.rewriter = rewriter
-        self.hyde = hyde
-        self.use_rewrite = use_rewrite
-        self.use_hyde = use_hyde
-        self.hyde_weight = hyde_weight
-        self.rrf_k = rrf_k
+    vector_store: Any                 # QdrantHybridVectorStore: .embeddings, .sparse_encoder, .hybrid_search_by_vector
+    rewriter: Any = None              # QueryRewriter
+    hyde: Any = None                  # HyDEGenerator
+    use_rewrite: bool = True
+    use_hyde: bool = True
+    hyde_weight: float = 0.8          # HyDE is speculative text: it may add recall, but shouldn't outvote the real question
+    rrf_k: int = 60
+    k: int = 20
 
-    # -- BaseRetriever contract (used by RAGSystem.ask and the evaluators) ---------
-    def retrieve(self, query: str, top_k: int = 20) -> list[Chunk]:
+    # -- LangChain retriever contract (used by RAGSystem and the evaluators) --------
+    def _get_relevant_documents(self, query: str, *, run_manager: CallbackManagerForRetrieverRun,
+                                k: int | None = None) -> list[Document]:
         variants = [QueryVariant("original", query)]
         if self.use_rewrite and self.rewriter is not None:
             rewrite = self.rewriter.rewrite(query)
@@ -67,23 +63,24 @@ class AdvancedRetriever(BaseRetriever):
             passage = self.hyde.generate(variants[-1].text)
             if passage:
                 variants.append(QueryVariant("hyde", passage, self.hyde_weight))
-        return self.search_variants(variants, top_k).chunks
+        return self.search_variants(variants, k or self.k).documents
 
     # -- core --------------------------------------------------------------------
-    def search_variants(self, variants: list[QueryVariant], top_k: int = 20) -> RetrievalResult:
+    def search_variants(self, variants: list[QueryVariant], top_k: int | None = None) -> RetrievalResult:
+        top_k = top_k or self.k
         variants = _dedupe(variants)
         if not variants:
             return RetrievalResult([])
 
         logger.info(f"Multi-query retrieval over {len(variants)} variant(s): {[v.name for v in variants]}")
-        dense_vectors = self.embedder.embed_batch([v.text for v in variants])   # one API call for all variants
+        dense_vectors = self.vector_store.embeddings.embed_documents([v.text for v in variants])  # one API call
 
         rankings, weights, hits, used = [], [], {}, []
         last_error: Exception | None = None
         for variant, dense in zip(variants, dense_vectors):
             try:
-                sparse = self.embedder.sparse_encode(variant.text)
-                results = self.vector_store.hybrid_search(dense, sparse, limit=top_k)
+                sparse = self.vector_store.sparse_encoder.encode(variant.text)
+                results = self.vector_store.hybrid_search_by_vector(dense, sparse, k=top_k)
             except Exception as error:  # noqa: BLE001 — one failing variant shouldn't sink the others
                 last_error = error
                 logger.warning(f"Variant '{variant.name}' search failed: {error}")
@@ -97,7 +94,7 @@ class AdvancedRetriever(BaseRetriever):
             raise RuntimeError(f"Every retrieval variant failed; last error: {last_error}") from last_error
 
         fused = rrf_fuse(rankings, weights, k=self.rrf_k)[:top_k]
-        logger.info(f"Fused {sum(hits.values())} hits into {len(fused)} unique chunk(s)")
+        logger.info(f"Fused {sum(hits.values())} hits into {len(fused)} unique document(s)")
         return RetrievalResult(fused, used, hits)
 
 

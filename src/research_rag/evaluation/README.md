@@ -15,7 +15,7 @@ LLM-written questions were scored against the chunks they were written from.
   **section** granularity, broken out by query type (abstractive/extractive) and modality
   (text / text-image / text-table / text-table-image). The section-level number is the strict one:
   right paper, wrong section counts as a miss, because the generator still won't find the fact.
-  Note that this is not an LLM-free measurement by default: `AdvancedRetriever.retrieve()` runs
+  Note that this is not an LLM-free measurement by default: `AdvancedRetriever.invoke()` runs
   query rewriting and HyDE, so each query costs 2 LLM calls unless `ENABLE_QUERY_REWRITE` and
   `ENABLE_HYDE` are off. It is still far cheaper than a full run, which also pays generation,
   grading, groundedness and the judge.

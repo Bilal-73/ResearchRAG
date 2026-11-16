@@ -195,26 +195,27 @@ def test_missing_metadata_file_explains_how_to_fix_it(tmp_path):
 def test_pipeline_embeds_upserts_and_writes_a_manifest(corpus_dir, tmp_path):
     from fakes import FakeEmbedder, FakeVectorStore
 
-    store = FakeVectorStore(chunks=[])
     manifest = tmp_path / "manifest.json"
-    pipeline = IngestionPipeline(RAGBenchCorpus(corpus_dir), SectionChunker(),
-                                 FakeEmbedder(), store, manifest_path=manifest)
+    embedder = FakeEmbedder()
+    store = FakeVectorStore(chunks=[], embedding=embedder)
+    pipeline = IngestionPipeline(RAGBenchCorpus(corpus_dir), SectionChunker(), store, manifest_path=manifest)
 
     report = pipeline.ingest(["2410.14077v2"])
     assert report.papers_ingested == 1 and report.chunks_upserted > 0
     assert report.by_type["table"] == 1 and report.by_type["figure"] == 1
-    assert all(c.dense_vector and c.sparse_vector for c in store.upserted)
+    assert len(store.upserted) == report.chunks_upserted and all(d.id for d in store.upserted)
+    assert sum(len(batch) for batch in embedder.embed_calls) == report.chunks_upserted   # embedded by the store
 
     entry = json.loads(manifest.read_text(encoding="utf-8"))["2410.14077v2"]
     assert entry["categories"] == ["cs.SY"] and entry["n_chunks"] == report.chunks_upserted
 
 
 def test_rerunning_skips_indexed_papers_unless_forced(corpus_dir, tmp_path):
-    from fakes import FakeEmbedder, FakeVectorStore
+    from fakes import FakeVectorStore
 
     manifest = tmp_path / "manifest.json"
     pipeline = IngestionPipeline(RAGBenchCorpus(corpus_dir), SectionChunker(),
-                                 FakeEmbedder(), FakeVectorStore(chunks=[]), manifest_path=manifest)
+                                 FakeVectorStore(chunks=[]), manifest_path=manifest)
     pipeline.ingest(["2410.14077v2"])
     again = pipeline.ingest(["2410.14077v2"])
     assert again.papers_skipped == 1 and again.papers_ingested == 0
@@ -223,11 +224,10 @@ def test_rerunning_skips_indexed_papers_unless_forced(corpus_dir, tmp_path):
 
 
 def test_one_bad_paper_does_not_abort_the_run(corpus_dir, tmp_path):
-    from fakes import FakeEmbedder, FakeVectorStore
+    from fakes import FakeVectorStore
 
     pipeline = IngestionPipeline(RAGBenchCorpus(corpus_dir), SectionChunker(),
-                                 FakeEmbedder(), FakeVectorStore(chunks=[]),
-                                 manifest_path=tmp_path / "m.json")
+                                 FakeVectorStore(chunks=[]), manifest_path=tmp_path / "m.json")
     report = pipeline.ingest(["missing-paper", "2410.14077v2"])
     assert report.papers_failed == 1 and report.papers_ingested == 1
     assert "missing-paper" in report.failures

@@ -24,7 +24,9 @@ import logging
 import math
 from collections import defaultdict
 
-from research_rag.retrieval.base import BaseRetriever
+from langchain_core.retrievers import BaseRetriever
+
+from research_rag.models import Chunk
 
 logger = logging.getLogger(__name__)
 
@@ -61,9 +63,10 @@ class RetrievalEvaluator:
 
         for i, item in enumerate(eval_items, start=1):
             question = item["question"]
-            chunks = self.retriever.retrieve(question, top_k=self.top_k)
+            docs = self.retriever.invoke(question, k=self.top_k)
             if self.reranker is not None:
-                chunks = self.reranker.rerank(question, chunks, top_k=self.rerank_top_k)
+                docs = self.reranker.rerank(question, docs, top_k=self.rerank_top_k)
+            chunks = [Chunk.from_document(doc) for doc in docs]
 
             doc_rank, section_rank = self._ranks(chunks, item["doc_id"], item.get("section_id"))
             rows.append({

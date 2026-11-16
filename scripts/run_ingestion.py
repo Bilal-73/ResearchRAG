@@ -70,7 +70,7 @@ def main() -> None:
         return
 
     logger.info(f"Indexing {len(paper_ids)} paper(s) into '{settings.qdrant_collection_name}'")
-    dense_dim = len(components["embedder"].embed("dimension probe"))
+    dense_dim = len(components["embeddings"].embed_query("dimension probe"))
     components["vector_store"].create_collection(dense_dim=dense_dim)
     logger.info(f"Qdrant collection ready (dense dim={dense_dim})")
 

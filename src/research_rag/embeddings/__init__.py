@@ -1,4 +1,4 @@
-from .azure_embedder import AzureEmbedder
-from .base import BaseEmbedder
+from .cached import CachedEmbeddings
+from .sparse import SPARSE_VOCAB_SIZE, HashingSparseEncoder
 
-__all__ = ["BaseEmbedder", "AzureEmbedder"]
+__all__ = ["CachedEmbeddings", "HashingSparseEncoder", "SPARSE_VOCAB_SIZE"]

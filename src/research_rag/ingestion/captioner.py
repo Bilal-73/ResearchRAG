@@ -35,7 +35,11 @@ import hashlib
 import logging
 import time
 
+from langchain_core.language_models import BaseChatModel
+from langchain_core.messages import HumanMessage
+
 from research_rag.caching import RedisCache
+from research_rag.llm import build_vision_model
 from .base import BaseCaptioner
 
 logger = logging.getLogger(__name__)
@@ -66,13 +70,12 @@ class VLMCaptioner(BaseCaptioner):
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float = DEFAULT_TIMEOUT_SECONDS,
         cache: RedisCache | None = None,
+        chat_model: BaseChatModel | None = None,     # inject a fake in tests
     ):
         logger.debug(f"Initializing VLMCaptioner: api_base={api_base}, model={model_name}, "
                      f"max_retries={max_retries}, timeout={timeout}s, "
                      f"cache={'on' if cache and cache.enabled else 'off'}")
-        from openai import OpenAI
-
-        self._client = OpenAI(base_url=api_base, api_key=api_key, timeout=timeout)
+        self._model = chat_model or build_vision_model(api_base, api_key, model_name, timeout)
         self._model_name = model_name
         self._max_retries = max_retries
         self._cache = cache
@@ -96,21 +99,13 @@ class VLMCaptioner(BaseCaptioner):
                              f"(model={self._model_name}, image={len(image_bytes)} bytes, mime={mime_type})")
                 t0 = time.monotonic()
 
-                response = self._client.chat.completions.create(
-                    model=self._model_name,
-                    messages=[{
-                        "role": "user",
-                        "content": [
-                            {"type": "text", "text": prompt},
-                            {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{b64_image}"}},
-                        ],
-                    }],
-                    max_tokens=300,
-                    temperature=0.0,
-                )
+                response = self._model.invoke([HumanMessage(content=[
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{b64_image}"}},
+                ])])
                 elapsed = time.monotonic() - t0
                 logger.debug(f"VLM call succeeded in {elapsed:.1f}s")
-                caption_text = response.choices[0].message.content.strip()
+                caption_text = str(response.content).strip()
                 if self._cache is not None:
                     self._cache.set(cache_namespace, cache_key, caption_text)
                 return caption_text

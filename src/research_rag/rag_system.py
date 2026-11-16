@@ -13,6 +13,8 @@ from __future__ import annotations
 import logging
 import uuid
 
+from langchain_core.runnables import Runnable, RunnableLambda
+
 from research_rag.models import Chunk, RAGResponse, SourceCitation
 
 logger = logging.getLogger(__name__)
@@ -35,6 +37,11 @@ class RAGSystem:
     def ask_full(self, question: str, *, options: dict | None = None):
         """The complete AgentResult (intent, trace, guardrail events, groundedness)."""
         return self.agent.chat(question, f"eval-{uuid.uuid4().hex[:12]}", options)
+
+    def as_runnable(self) -> Runnable:
+        """The whole system as one LangChain Runnable: question (str) -> RAGResponse, so it
+        composes with other LCEL chains, batch() and callback/tracing configs."""
+        return RunnableLambda(lambda question: self.ask(question), name="research_rag")
 
 
 __all__ = ["RAGSystem", "RAGResponse", "SourceCitation", "Chunk"]

@@ -22,7 +22,7 @@ import re
 from dataclasses import dataclass
 
 from research_rag.llm import LLMClient
-from .prompts import CLASSIFIER_SYSTEM
+from .prompts import CLASSIFIER_PROMPT
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +65,7 @@ def is_greeting(text: str) -> bool:
 
 class IntentClassifier:
     def __init__(self, llm: LLMClient, corpus_info=None, min_confidence: float = 0.5):
-        self._llm = llm
+        self._chain = llm.json_chain(CLASSIFIER_PROMPT, purpose="classify", default={}, max_tokens=120)
         self._corpus = corpus_info
         self._min_confidence = min_confidence
 
@@ -83,13 +83,7 @@ class IntentClassifier:
             context.append(f"RECENT TURNS:\n{recent_turns}")
         context_block = "\n\n".join(context) or "(none — this is the first message)"
 
-        raw = self._llm.chat_json(
-            [
-                {"role": "system", "content": CLASSIFIER_SYSTEM.format(corpus=corpus_text)},
-                {"role": "user", "content": f"CONVERSATION CONTEXT:\n{context_block}\n\nLATEST USER MESSAGE:\n{message}"},
-            ],
-            purpose="classify", default={}, max_tokens=120,
-        )
+        raw = self._chain.invoke({"corpus": corpus_text, "context": context_block, "message": message})
 
         intent = str(raw.get("intent", "")).strip().lower()
         if intent not in INTENTS:

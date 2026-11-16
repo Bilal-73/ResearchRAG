@@ -20,7 +20,7 @@ this benchmark starts from identical source text, so a score difference is a ret
   `CAPTION_FIGURES=true`. Defaults to a free, self-hosted Qwen2.5-VL-7B served via Ollama or vLLM
   behind an OpenAI-compatible endpoint — see the serving commands in the docstring. Swapping to a
   hosted API is a `.env` change, not a code change.
-- **`pipeline.py`** — `IngestionPipeline`: read → chunk → embed (batched) → upsert, writing the
+- **`pipeline.py`** — `IngestionPipeline`: read → chunk → LangChain `Document`s → `vector_store.add_documents()` (embeds in batches + upserts), writing the
   manifest after every paper so a 400-paper run is resumable.
 
 ## Chunking decisions that affect benchmark scores

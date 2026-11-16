@@ -106,7 +106,7 @@ LangGraph agent  ── 14 nodes, see §6
 | Vector store | `vectorstore/` | Qdrant collection + hybrid search |
 | Composition | `bootstrap.py` | **The one place implementations are chosen** |
 
-Swapping a component (different vector store, reranker, embedder) is a change to `bootstrap.py` and
+Swapping a component (different vector store, reranker, embedding model) is a change to `bootstrap.py` and
 nowhere else. That is the main reason for the abstract base classes.
 
 ### Three design decisions worth knowing
@@ -183,20 +183,37 @@ The manifest doubles as the **resume log**: re-running skips papers already inde
 | Purpose | Library | Version |
 |---|---|---|
 | **Agent orchestration** | **LangGraph** | 1.2.12 |
+| **Data orchestration** (prompts, chains, models, retrievers) | **LangChain** (`langchain-core`, `langchain-openai`) | 1.6 / 1.1 |
 | HTTP API | FastAPI + Uvicorn | 0.142 / 0.54 |
 | Vector store | qdrant-client | 1.19.1 |
-| LLM + embeddings | openai (Azure) | 1.109.1 |
+| LLM + embeddings | langchain-openai → openai (Azure) | 1.1.9 / 1.109.1 |
 | Reranking | sentence-transformers (CrossEncoder) | 6.1.0 + torch 2.14 |
 | Tokenisation | tiktoken | 0.12.0 |
 | Cache | redis | 8.1.0 |
 | Config/validation | pydantic + pydantic-settings | 2.13 |
-| **Evaluation** | **ragas** (+ langchain, datasets) | 0.3.9 |
+| **Evaluation** | **ragas** (+ datasets) | 0.3.9 |
 | Frontend | React 19, TypeScript, Vite | |
-| Tests | pytest — 243 passing, fully offline | |
+| Tests | pytest — 252 passing, fully offline | |
 
-**Orchestration is LangGraph only.** LangChain is present *solely* because RAGAS requires it
-internally — no LangChain chains, agents or retrievers are used in the application code. There is
-no Celery/Airflow/Prefect; ingestion is a resumable script, not a DAG.
+**One LangChain stack, end to end.** LangGraph orchestrates the agent (routing, loops, memory);
+every step inside it is built from LangChain primitives:
+
+| Layer | LangChain interface | Implementation |
+|---|---|---|
+| Chat model | `BaseChatModel` | `AzureChatOpenAI` (`llm/factory.py`), wrapped by `LLMClient` for retry/backoff/concurrency |
+| Prompts | `ChatPromptTemplate` | `agents/prompts.py`, `retrieval/query_transforms.py`, `generation/prompt_builder.py`, `evaluation/llm_judge.py` |
+| LLM steps | LCEL `prompt \| llm \| parser` | `llm.text_chain()` / `llm.json_chain()` (JSON chains fall back to a safe default via `.with_fallbacks`) |
+| Embeddings | `Embeddings` | `AzureOpenAIEmbeddings` behind a Redis-backed `CachedEmbeddings` |
+| Vector store | `VectorStore` | `QdrantHybridVectorStore` — dense + sparse, server-side RRF; keeps the existing flat payload |
+| Retrieval | `BaseRetriever` | `HybridRetriever`, `AdvancedRetriever` (multi-query + HyDE + RRF) |
+| Reranking | `BaseDocumentCompressor` | `CrossEncoderReranker` |
+| Interchange | `Document` | `Chunk.to_document()` / `Chunk.from_document()` |
+| Whole system | `Runnable` | the compiled LangGraph graph, and `RAGSystem.as_runnable()` |
+
+Every LLM call runs with `run_name=<purpose>` (`classify`, `rewrite:standard`, `hyde`, `grade`,
+`generate`, ...), so setting `LANGSMITH_TRACING=true` + `LANGSMITH_API_KEY` traces a whole turn
+step by step with no code change. There is no Celery/Airflow/Prefect; ingestion is a resumable
+script, not a DAG.
 
 **Infrastructure:** Qdrant and Redis as Docker containers. Azure OpenAI for chat (`gpt-4o-mini`) and
 embeddings (`text-embedding-3-small`) — two separate resources, which is why they have separate
@@ -452,10 +469,10 @@ planner, context grading, groundedness.
 
 ### Code-level swaps (each is one place)
 
-- **Sparse vectors** are a hashing encoder, not BM25 — `AzureEmbedder.sparse_encode`.
+- **Sparse vectors** are a hashing encoder, not BM25 — `HashingSparseEncoder.encode`.
 - **Reranker model** — `RERANKER_MODEL` env var.
-- **Vector store** — implement `BaseVectorStore`, change `bootstrap.py`.
-- **LLM provider** — `LLMClient` is the only place chat calls happen.
+- **Vector store** — write another LangChain `VectorStore` exposing `hybrid_search_by_vector`, change `bootstrap.py`.
+- **LLM provider** — any LangChain `BaseChatModel`: change `llm/factory.py`; `LLMClient` is the only place chat calls happen.
 
 ---
 

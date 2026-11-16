@@ -1,8 +1,8 @@
 """End-to-end answer-quality evaluation with an LLM judge.
 
-Dependency-free: it uses the same resilient LLMClient the rest of the project
-already relies on — no ragas, no langchain — so it cannot break from a
-version conflict in those chains. RAGAS remains available as an optional
+It is one more LCEL chain (``JUDGE_PROMPT | llm | parser``) on the same
+resilient LLMClient the agent uses — no ragas — so it cannot break from a
+version conflict in that chain. RAGAS remains available as an optional
 cross-check (``ragas_eval.py``).
 
 Four scores per question, chosen because they fail independently:
@@ -24,6 +24,9 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+
+from langchain_core.messages import SystemMessage
+from langchain_core.prompts import ChatPromptTemplate
 
 from research_rag.guardrails import is_refusal
 
@@ -61,6 +64,9 @@ Reference (ground truth) answer:
 Assistant's answer:
 {answer}"""
 
+# The system text is a literal SystemMessage (not a template): its JSON example has bare braces.
+JUDGE_PROMPT = ChatPromptTemplate.from_messages([SystemMessage(content=JUDGE_SYSTEM), ("human", JUDGE_USER)])
+
 SCORE_FIELDS = ("faithfulness", "answer_relevance", "correctness", "citation_quality")
 
 
@@ -81,19 +87,14 @@ class JudgeRow:
 class LLMJudgeEvaluator:
     def __init__(self, rag_system, llm, max_context_chars: int = 8000):
         self.rag_system = rag_system
-        self._llm = llm
+        self._chain = llm.json_chain(JUDGE_PROMPT, purpose="judge", default={}, max_tokens=250)
         self.max_context_chars = max_context_chars
 
     def _judge(self, question: str, context: str, answer: str, reference: str) -> dict:
-        return self._llm.chat_json(
-            [
-                {"role": "system", "content": JUDGE_SYSTEM},
-                {"role": "user", "content": JUDGE_USER.format(
-                    question=question, context=context[:self.max_context_chars],
-                    reference=reference or "(no reference answer provided)", answer=answer)},
-            ],
-            purpose="judge", default={}, max_tokens=250,
-        )
+        return self._chain.invoke({
+            "question": question, "context": context[:self.max_context_chars],
+            "reference": reference or "(no reference answer provided)", "answer": answer,
+        })
 
     def evaluate(self, eval_items: list[dict], progress=None) -> dict:
         rows: list[JudgeRow] = []

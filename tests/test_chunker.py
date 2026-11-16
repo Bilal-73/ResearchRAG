@@ -29,12 +29,12 @@ def test_round_trip_through_dict_preserves_benchmark_fields():
     assert restored.paper_title == original.paper_title and restored.score == 0.42
 
 
-def test_vectors_are_dropped_from_the_serialised_form():
+def test_langchain_document_view_carries_the_payload_as_metadata():
     chunk = _chunk()
-    chunk.dense_vector = [0.1] * 16
-    chunk.sparse_vector = {"indices": [1], "values": [1.0]}
-    as_dict = chunk.to_dict()
-    assert "dense_vector" not in as_dict and "sparse_vector" not in as_dict
+    doc = chunk.to_document()
+    assert doc.id == chunk.id and doc.page_content == chunk.text
+    assert doc.metadata == {k: v for k, v in chunk.to_payload().items() if k != "text"}
+    assert Chunk.from_document(doc).to_dict() == chunk.to_dict()
 
 
 def test_payload_round_trip_tolerates_missing_optional_fields():

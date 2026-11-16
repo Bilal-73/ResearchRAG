@@ -13,7 +13,7 @@ from __future__ import annotations
 import logging
 
 from research_rag.llm import LLMClient
-from .prompts import SUMMARY_SYSTEM
+from .prompts import SUMMARY_PROMPT
 
 logger = logging.getLogger(__name__)
 
@@ -52,14 +52,9 @@ def fold_old_turns(history: list[dict], summary: str, max_turns: int, llm: LLMCl
     if llm is None:
         return kept, summary
     transcript = format_recent_turns(overflow, n_turns=len(overflow), answer_chars=300)
+    chain = llm.text_chain(SUMMARY_PROMPT, purpose="summarize", temperature=0.0, max_tokens=220)
     try:
-        new_summary = llm.chat(
-            [
-                {"role": "system", "content": SUMMARY_SYSTEM},
-                {"role": "user", "content": f"EXISTING SUMMARY:\n{summary or '(none)'}\n\nTURNS TO FOLD IN:\n{transcript}"},
-            ],
-            temperature=0.0, max_tokens=220, purpose="summarize",
-        ).strip()
+        new_summary = chain.invoke({"summary": summary or "(none)", "transcript": transcript}).strip()
     except Exception as error:  # noqa: BLE001 — losing a summary is acceptable; losing the chat is not
         logger.warning(f"Summarisation failed ({error}); dropping old turns without a summary")
         return kept, summary

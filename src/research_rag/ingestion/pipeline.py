@@ -1,4 +1,5 @@
-"""Orchestrates the corpus through read -> chunk -> embed -> upsert.
+"""Orchestrates the corpus through read -> chunk -> LangChain Documents ->
+vector_store.add_documents() (which embeds dense + sparse and upserts).
 
 Resumable by design: ingesting 400 papers is a long job, so progress is
 written to a state file after every paper. Re-running skips what is already
@@ -12,16 +13,13 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from research_rag.embeddings.base import BaseEmbedder
+from langchain_core.vectorstores import VectorStore
+
 from research_rag.models import Chunk
-from research_rag.vectorstore.base import BaseVectorStore
 from .ragbench import RAGBenchCorpus
 from .section_chunker import SectionChunker
 
 logger = logging.getLogger(__name__)
-
-EMBED_BATCH_SIZE = 64          # Azure accepts large batches; this keeps each request well under limits
-
 
 @dataclass
 class IngestionReport:
@@ -46,14 +44,12 @@ class IngestionPipeline:
         self,
         corpus: RAGBenchCorpus,
         chunker: SectionChunker,
-        embedder: BaseEmbedder,
-        vector_store: BaseVectorStore,
+        vector_store: VectorStore,
         manifest_path: str | Path = "data/arxiv_manifest.json",
         load_images: bool = False,
     ):
         self.corpus = corpus
         self.chunker = chunker
-        self.embedder = embedder
         self.vector_store = vector_store
         self.manifest_path = Path(manifest_path)
         self.load_images = load_images
@@ -81,13 +77,7 @@ class IngestionPipeline:
             logger.warning(f"[{paper_id}] produced no chunks — nothing to index")
             return []
 
-        for start in range(0, len(chunks), EMBED_BATCH_SIZE):
-            batch = chunks[start:start + EMBED_BATCH_SIZE]
-            vectors = self.embedder.embed_batch([c.text for c in batch])
-            for chunk, vector in zip(batch, vectors):
-                chunk.dense_vector = vector
-                chunk.sparse_vector = self.embedder.sparse_encode(chunk.text)
-            self.vector_store.upsert(batch)
+        self.vector_store.add_documents([chunk.to_document() for chunk in chunks])
 
         return chunks
 

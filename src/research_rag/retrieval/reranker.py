@@ -1,46 +1,68 @@
-"""Cross-encoder reranking pass — worth it here because the precision of the
-top 3-5 chunks matters more than recall of the top 20 in a citation-driven system.
+"""Cross-encoder reranking as a LangChain ``BaseDocumentCompressor`` — worth it here
+because the precision of the top 3-5 chunks matters more than recall of the top 20
+in a citation-driven system.
 
-The relevance score is written onto each returned chunk (`chunk.score`) so the
-UI and the citation list can show *why* a source ranked where it did."""
+The relevance score is written onto each returned document
+(``metadata["relevance_score"]``, surfaced as ``Chunk.score``) so the UI and the
+citation list can show *why* a source ranked where it did.
+
+``compress_documents`` keeps the standard compressor contract (``top_n``) so the
+reranker composes with any LangChain retriever; ``rerank(query, docs, top_k)``
+is the same operation with a per-call cut-off, which the agent needs.
+"""
 import logging
 import time
+from typing import Any, Sequence
 
-from research_rag.models import Chunk
-from .base import BaseReranker
+from langchain_core.callbacks import Callbacks
+from langchain_core.documents import BaseDocumentCompressor, Document
+from pydantic import PrivateAttr
 
 logger = logging.getLogger(__name__)
 
 
+class BaseReranker(BaseDocumentCompressor):
+    top_n: int = 5
+
+    def compress_documents(self, documents: Sequence[Document], query: str,
+                           callbacks: Callbacks | None = None) -> Sequence[Document]:
+        return self.rerank(query, list(documents), top_k=self.top_n)
+
+    def rerank(self, query: str, documents: list[Document], top_k: int = 5) -> list[Document]:
+        raise NotImplementedError
+
+
 class CrossEncoderReranker(BaseReranker):
-    def __init__(self, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
-        logger.debug(f"Loading cross-encoder model: {model_name} (first run downloads it from Hugging Face)")
+    model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    _model: Any = PrivateAttr(default=None)
+
+    def model_post_init(self, __context: Any) -> None:
+        logger.debug(f"Loading cross-encoder model: {self.model_name} (first run downloads it from Hugging Face)")
         from sentence_transformers import CrossEncoder
 
-        self._model = CrossEncoder(model_name)
+        self._model = CrossEncoder(self.model_name)
         logger.debug("Cross-encoder loaded.")
 
-    def rerank(self, query: str, chunks: list[Chunk], top_k: int = 5) -> list[Chunk]:
-        if not chunks:
-            logger.warning("rerank called with 0 candidate chunks — nothing to rerank")
+    def rerank(self, query: str, documents: list[Document], top_k: int = 5) -> list[Document]:
+        if not documents:
+            logger.warning("rerank called with 0 candidate documents — nothing to rerank")
             return []
 
-        logger.info(f"Reranking {len(chunks)} candidate(s) down to top_k={top_k} ...")
+        logger.info(f"Reranking {len(documents)} candidate(s) down to top_k={top_k} ...")
         t0 = time.monotonic()
 
-        pairs = [(query, chunk.text) for chunk in chunks]
-        scores = self._model.predict(pairs)
-        ranked = sorted(zip(scores, chunks), key=lambda pair: pair[0], reverse=True)
-        for score, chunk in ranked:
-            chunk.score = float(score)
+        scores = self._model.predict([(query, doc.page_content) for doc in documents])
+        ranked = sorted(zip(scores, documents), key=lambda pair: pair[0], reverse=True)
+        for score, doc in ranked:
+            doc.metadata["relevance_score"] = float(score)
 
         logger.info(f"Reranked in {time.monotonic() - t0:.2f}s")
-        return [chunk for _, chunk in ranked][:top_k]
+        return [doc for _, doc in ranked][:top_k]
 
 
 class NoOpReranker(BaseReranker):
     """Keeps the retrieval order (used when reranking is switched off, so the
     rest of the pipeline never needs a special case)."""
 
-    def rerank(self, query: str, chunks: list[Chunk], top_k: int = 5) -> list[Chunk]:
-        return chunks[:top_k]
+    def rerank(self, query: str, documents: list[Document], top_k: int = 5) -> list[Document]:
+        return list(documents)[:top_k]

@@ -164,7 +164,7 @@ def test_rate_limit_is_429_with_retry_after_header():
 
 def test_upstream_failure_is_503_not_a_fake_answer():
     c, h = build_client()
-    h.store.hybrid_search = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("qdrant down"))
+    h.store.hybrid_search_by_vector = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("qdrant down"))
     response = c.post("/v1/chat", json={"message": "What RMSPE did the proposed algorithm reach?"})
     assert response.status_code == 503
     assert response.json()["error"] == "upstream_unavailable"

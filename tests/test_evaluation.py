@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 
 import pytest
+from langchain_core.retrievers import BaseRetriever
 
 from fakes import CORPUS, Harness, make_chunk
 from research_rag.evaluation import (
@@ -87,17 +88,16 @@ def test_eval_and_negative_sets_never_overlap():
 
 
 # ---------------------------------------------------------------- retrieval ----
-class ScriptedRetriever:
-    def __init__(self, chunks):
-        self.chunks = chunks
+class ScriptedRetriever(BaseRetriever):
+    chunks: list
 
-    def retrieve(self, query, top_k=10):
-        return self.chunks[:top_k]
+    def _get_relevant_documents(self, query, *, run_manager, k=10):
+        return [c.to_document() for c in self.chunks[:k]]
 
 
 def test_section_level_scoring_is_stricter_than_document_level():
     # Right paper, wrong section: a document-level metric counts it, a section-level one must not.
-    retriever = ScriptedRetriever([make_chunk("x", "text", section_id=99)])
+    retriever = ScriptedRetriever(chunks=[make_chunk("x", "text", section_id=99)])
     result = RetrievalEvaluator(retriever, top_k=5).evaluate(
         [{"query_id": "q1", "question": "q", "doc_id": "2410.14077v2", "section_id": 8,
           "type": "extractive", "source": "text"}])
@@ -110,14 +110,14 @@ def test_rank_sensitive_metrics_reward_a_higher_hit():
     hit = make_chunk("h", "relevant", section_id=8)
     item = [{"query_id": "q", "question": "q", "doc_id": "2410.14077v2", "section_id": 8,
              "type": "extractive", "source": "text"}]
-    top = RetrievalEvaluator(ScriptedRetriever([hit, miss]), top_k=5).evaluate(item)["overall"]
-    second = RetrievalEvaluator(ScriptedRetriever([miss, hit]), top_k=5).evaluate(item)["overall"]
+    top = RetrievalEvaluator(ScriptedRetriever(chunks=[hit, miss]), top_k=5).evaluate(item)["overall"]
+    second = RetrievalEvaluator(ScriptedRetriever(chunks=[miss, hit]), top_k=5).evaluate(item)["overall"]
     assert top["mrr_section"] == 1.0 and second["mrr_section"] == 0.5
     assert top["ndcg@k_section"] > second["ndcg@k_section"]
 
 
 def test_metrics_are_broken_out_by_type_and_source():
-    retriever = ScriptedRetriever([make_chunk("h", "relevant", section_id=8)])
+    retriever = ScriptedRetriever(chunks=[make_chunk("h", "relevant", section_id=8)])
     items = [
         {"query_id": "a", "question": "q", "doc_id": "2410.14077v2", "section_id": 8,
          "type": "extractive", "source": "text-table"},
@@ -131,7 +131,7 @@ def test_metrics_are_broken_out_by_type_and_source():
 
 
 def test_a_total_miss_scores_zero_not_an_error():
-    result = RetrievalEvaluator(ScriptedRetriever([]), top_k=5).evaluate(
+    result = RetrievalEvaluator(ScriptedRetriever(chunks=[]), top_k=5).evaluate(
         [{"query_id": "q", "question": "q", "doc_id": "nope", "section_id": 1,
           "type": "extractive", "source": "text"}])
     assert result["overall"]["recall@k_doc"] == 0.0 and result["overall"]["mrr_doc"] == 0.0
@@ -163,7 +163,7 @@ def test_judge_scores_every_dimension_and_summarises_by_source():
 
 def test_judge_reports_refusals_on_answerable_questions():
     h = Harness()
-    h.openai.handlers["generate"] = lambda m: "This is not reported in the retrieved context."
+    h.model.handlers["generate"] = lambda m: "This is not reported in the retrieved context."
     result = LLMJudgeEvaluator(_system(h), h.llm).evaluate(
         [{"query_id": "q1", "question": "What RMSPE did it reach?", "expected_answer": "2.3426", "source": "text"}])
     assert result["refusal_rate_on_answerable"] == 1.0
@@ -171,7 +171,7 @@ def test_judge_reports_refusals_on_answerable_questions():
 
 def test_unusable_judge_output_yields_none_not_a_crash_or_a_zero():
     h = Harness()
-    h.openai.handlers["judge"] = lambda m: "not json at all"
+    h.model.handlers["judge"] = lambda m: "not json at all"
     result = LLMJudgeEvaluator(_system(h), h.llm).evaluate(
         [{"query_id": "q1", "question": "What RMSPE did it reach?", "expected_answer": "x", "source": "text"}])
     assert result["avg_faithfulness"] is None
@@ -197,7 +197,7 @@ def test_refusal_evaluator_counts_a_decline_as_correct():
 
 def test_refusal_evaluator_flags_a_confident_answer_as_a_hallucination():
     h = Harness(chunks=CORPUS)
-    h.openai.handlers["generate"] = lambda m: "The unindexed paper reports an RMSPE of 1.1 percent [S1]."
+    h.model.handlers["generate"] = lambda m: "The unindexed paper reports an RMSPE of 1.1 percent [S1]."
     result = RefusalEvaluator(_system(h)).evaluate(
         [{"query_id": "n1", "question": "What does the unindexed paper report?",
           "unindexed_doc_id": "2401.07294v4"}])

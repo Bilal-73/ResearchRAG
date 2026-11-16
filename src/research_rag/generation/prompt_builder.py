@@ -13,8 +13,14 @@ Specific to a scientific corpus:
   * each excerpt is fenced and stripped of anything that could spoof a
     citation label or close the fence;
   * a canary token is planted so a prompt leak can be detected on output.
+
+The prompt is a LangChain ``ChatPromptTemplate`` (`ANSWER_PROMPT`); this class
+fills its variables — `prompt_variables()` — and the generator runs
+``ANSWER_PROMPT | llm``.
 """
 import re
+
+from langchain_core.prompts import ChatPromptTemplate
 
 from research_rag.guardrails import Canary
 from research_rag.models import Chunk
@@ -84,6 +90,11 @@ CITATION_REMINDER = (
     "question, reply: \"This is not reported in the retrieved context.\""
 )
 
+ANSWER_PROMPT = ChatPromptTemplate.from_messages([
+    ("system", SYSTEM_PROMPT),
+    ("human", "Context:\n{context}\n\n{notes}Question: {question}"),
+])
+
 _LABEL_IN_TEXT = re.compile(r"\[\s*S(\d+)\s*\]", re.IGNORECASE)
 _FENCE_TOKENS = re.compile(r"(<<<\s*EXCERPT|EXCERPT\s*>>>)", re.IGNORECASE)
 
@@ -98,11 +109,23 @@ class CitationPromptBuilder:
     def __init__(self, canary: Canary | None = None):
         self.canary = canary or Canary()
 
+    def prompt_variables(self, question: str, chunks: list[Chunk], *, corpus_description: str = "",
+                         low_context: bool = False, hardened: bool = False, citation_reminder: bool = False,
+                         sub_questions: list[str] | None = None) -> dict:
+        """Everything `ANSWER_PROMPT` needs, for one generation call."""
+        return {
+            "corpus": corpus_description or "(corpus description unavailable)",
+            "canary": self.canary.token,
+            "context": self.build_context_block(chunks),
+            "notes": self.build_notes(low_context=low_context, hardened=hardened,
+                                      citation_reminder=citation_reminder, sub_questions=sub_questions),
+            "question": question,
+        }
+
     def build_system_prompt(self, corpus_description: str = "") -> str:
-        return SYSTEM_PROMPT.format(
-            corpus=corpus_description or "(corpus description unavailable)",
-            canary=self.canary.token,
-        )
+        return ANSWER_PROMPT.messages[0].format(
+            corpus=corpus_description or "(corpus description unavailable)", canary=self.canary.token,
+        ).content
 
     def build_context_block(self, chunks: list[Chunk]) -> str:
         blocks = []
@@ -115,12 +138,16 @@ class CitationPromptBuilder:
             blocks.append(f"[S{i}] {tag}\n<<<EXCERPT\n{sanitize_excerpt(chunk.text)}\nEXCERPT>>>")
         return "\n\n".join(blocks)
 
-    def build_user_message(self, question: str, chunks: list[Chunk], *, low_context: bool = False,
-                           hardened: bool = False, citation_reminder: bool = False,
-                           sub_questions: list[str] | None = None) -> str:
+    @staticmethod
+    def build_notes(*, low_context: bool = False, hardened: bool = False, citation_reminder: bool = False,
+                    sub_questions: list[str] | None = None) -> str:
         parts = ("\n".join(f"{i}. {q}" for i, q in enumerate(sub_questions, start=1))) if sub_questions else ""
         notes = [n for n, on in ((LOW_CONTEXT_NOTE, low_context), (HARDENED_NOTE, hardened),
                                  (PARTS_NOTE.format(parts=parts), bool(sub_questions)),
                                  (CITATION_REMINDER, citation_reminder)) if on]
-        note_block = ("\n\n".join(notes) + "\n\n") if notes else ""
-        return f"Context:\n{self.build_context_block(chunks)}\n\n{note_block}Question: {question}"
+        return ("\n\n".join(notes) + "\n\n") if notes else ""
+
+    def build_user_message(self, question: str, chunks: list[Chunk], **notes) -> str:
+        return ANSWER_PROMPT.messages[1].format(
+            context=self.build_context_block(chunks), notes=self.build_notes(**notes), question=question,
+        ).content

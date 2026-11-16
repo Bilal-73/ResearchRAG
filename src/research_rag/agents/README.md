@@ -1,6 +1,9 @@
 # agents/
 
 The LangGraph agent. `graph.py` wires it, `nodes.py` holds every step, `state.py` defines the state.
+Each step that calls the LLM runs an LCEL chain (`ChatPromptTemplate` from `prompts.py` `|` the
+`LLMClient` runnable `|` a parser), and retrieval steps pass LangChain `Document`s between the
+retriever and reranker before storing them in graph state as plain chunk dicts.
 
 - **`intent.py`** — classifier: follow_up / new_question / chit_chat / out_of_scope. Rule → LLM →
   safe fallbacks. Note the asymmetry in the guards: low confidence collapses to `new_question`,

@@ -51,11 +51,11 @@ def test_rag_route_collapses_rerank_into_retriever():
 
 
 def test_follow_up_and_planned_routes_are_explained():
-    h = Harness(); h.openai.handlers["plan"] = SPLIT
+    h = Harness(); h.model.handlers["plan"] = SPLIT
     h.ask("What RMSPE did the proposed algorithm reach?")
     r = h.ask("what about without excitation?")
     assert "Follow-up" in " ".join(route_decisions(r))
-    p = Harness(); p.openai.handlers["plan"] = SPLIT
+    p = Harness(); p.model.handlers["plan"] = SPLIT
     pr = p.ask(COMPOUND)
     assert "retrieve_plan" in _path(pr) and "retrieve" not in _path(pr) and "split it into 2 parts" in " ".join(route_decisions(pr))
 
@@ -63,7 +63,7 @@ def test_follow_up_and_planned_routes_are_explained():
 def test_corrective_retry_shows_the_loop_back():
     h = Harness()
     verdicts = iter([{"sufficient": False, "reason": "wrong measure"}, {"sufficient": True, "reason": "ok"}])
-    h.openai.handlers["grade"] = lambda m: json.dumps(next(verdicts))
+    h.model.handlers["grade"] = lambda m: json.dumps(next(verdicts))
     r = h.ask("What RMSPE did the proposed algorithm reach?")
     path = _path(r)
     assert path.count("rewrite_query") == 2 and path.count("grade") == 2
