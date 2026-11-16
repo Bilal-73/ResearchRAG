@@ -10,9 +10,9 @@ index (most come from `docs/TEST_QUESTIONS.md`).
 **Start the stack** (separate terminals, in this order):
 
 ```
-docker start qdrant redis
-cd D:\ResearchRAG && .venv\Scripts\python.exe scripts/run_api.py
-cd D:\research-rag-frontend && npm run dev
+docker compose up -d                                        # repo root: Qdrant + Redis
+cd backend && .venv\Scripts\python.exe scripts/run_api.py   # API on :8000
+cd frontend && npm run dev                                  # UI on :5173
 ```
 
 **Check it is healthy:** open http://127.0.0.1:8000/health. You want `vector_store: ok` (50 papers)
@@ -23,11 +23,11 @@ conversation. The first query pays for model loading and cold caches; you don't 
 
 **Open these tabs, in this order:**
 
-1. Slides — `D:\Presentations\research-rag-langchain.html` (on slide 1)
-2. Architecture diagram — `D:\ResearchRAG\.archify\architecture-research-rag-20261013-105708\research-rag.html`
+1. Slides — `backend/docs/research-rag-deck.html` (on slide 1)
+2. Architecture diagram — `docs/architecture-diagram.html` (repository root)
 3. The app — http://localhost:5173 (Chat tab, empty conversation)
 4. API docs — http://127.0.0.1:8000/docs
-5. Optional: VS Code on `src/research_rag/agents/graph.py` and `src/research_rag/bootstrap.py`
+5. Optional: VS Code on `backend/src/research_rag/agents/graph.py` and `backend/src/research_rag/bootstrap.py`
 
 **Screen hygiene:** browser zoom 110–125% so text is readable in the recording, hide the bookmarks
 bar, close Slack/email notifications, make sure no `.env` file or terminal showing keys is visible.

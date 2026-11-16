@@ -1,5 +1,9 @@
 # Research RAG — Agentic, Guardrailed, Benchmark-Evaluated RAG over arXiv Papers
 
+> **Backend** of the Research RAG monorepo. Repository overview, ports and setup: [../README.md](../README.md) ·
+> Docs index: [../docs/](../docs/README.md) · Frontend: [../frontend/](../frontend/README.md)
+> Run every command below **from inside this `backend/` folder**.
+
 A multimodal Retrieval-Augmented Generation system over **arXiv research papers**, served as a
 **FastAPI** HTTP API and evaluated against the
 [Open RAG Benchmark](https://huggingface.co/datasets/vectara/open_ragbench) (`vectara/open_ragbench`,
@@ -86,7 +90,7 @@ so it was silently dropping legitimate evidence. `context` is no longer a trigge
 python -m venv .venv && .venv\Scripts\activate     # Windows; use source .venv/bin/activate elsewhere
 pip install -r requirements.txt
 copy .env.example .env                              # then fill in your Azure keys
-docker run -p 6333:6333 qdrant/qdrant               # vector store
+docker compose up -d                                # from the repo root: Qdrant (6333) + Redis (6379)
 ```
 
 ```bash
@@ -192,10 +196,10 @@ Pass `?include_diagnostics=false` to drop the trace. Per-request pipeline toggle
 
 ## Frontend
 
-A separate React + TypeScript client lives at **`../research-rag-frontend`**:
+The React + TypeScript client lives next to this folder, in **`../frontend`** (same repository):
 
 ```bash
-cd ../research-rag-frontend && npm install && npm run dev
+cd ../frontend && npm install && npm run dev
 ```
 
 It is an inspection tool rather than just a chat window — clickable `[S#]` citations, the agent's
@@ -305,7 +309,7 @@ Two things the harness does on purpose:
 ## Project layout
 
 ```
-research-rag/
+backend/
 ├── config/            settings.py — all environment/config in one place
 ├── data/
 │   ├── open_ragbench/   downloaded corpus: queries/qrels/answers + corpus/*.json
@@ -328,7 +332,7 @@ research-rag/
 ├── scripts/           download_corpus, run_ingestion, run_api, run_evaluation, run_query, run_chat
 └── tests/             200+ offline tests (fakes for Azure/Qdrant; real agent, guardrails, API)
 
-../research-rag-frontend/   React + TypeScript client (separate project, its own README)
+../frontend/   React + TypeScript client (same repository, its own README)
 ```
 
 Every subfolder has its own `README.md` explaining that module in isolation.

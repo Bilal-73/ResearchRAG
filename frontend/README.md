@@ -1,5 +1,8 @@
 # Research RAG — Frontend
 
+> **Frontend** of the Research RAG monorepo. Repository overview, ports and setup: [../README.md](../README.md) ·
+> Docs index: [../docs/](../docs/README.md) · Backend: [../backend/](../backend/README.md)
+
 React + TypeScript + Vite client for the Research RAG API. It is an **inspection tool**, not just a
 chat window: every answer comes with the route the agent took, the guardrails that fired, the
 evidence it used, and what it cached and remembered along the way.
@@ -145,7 +148,7 @@ fetch client is the whole architecture. Answer text is rendered as text nodes, n
 ## Where are the PDFs?
 
 Nowhere on disk, by design. The Open RAG Benchmark ships each paper as pre-parsed JSON — sections,
-markdown tables, base64 figures — at `data/open_ragbench/corpus/<arxiv-id>.json` in the backend repo.
+markdown tables, base64 figures — at `data/open_ragbench/corpus/<arxiv-id>.json` in `backend/`.
 That JSON is what gets chunked, embedded and indexed; no PDF is ever downloaded. Every "PDF" link in
 this app therefore points at `arxiv.org/pdf/<id>`.
 
@@ -164,7 +167,7 @@ this app therefore points at `arxiv.org/pdf/<id>`.
 
 | Symptom | Cause |
 |---|---|
-| "API unreachable" badge | Backend isn't running — `scripts/run_api.py` in the other repo. |
+| "API unreachable" badge | Backend isn't running — `backend/scripts/run_api.py`. |
 | `vector_store` badge red | Qdrant is down: `docker start research-rag-qdrant`. |
 | `cache` badge amber | Redis is down. Everything still works, just slower: `docker start redis-server`. |
 | 401 on every request | Backend has `API_KEYS` set; put a matching key in `VITE_API_KEY` and restart `npm run dev`. |
